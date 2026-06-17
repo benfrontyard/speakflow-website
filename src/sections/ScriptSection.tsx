@@ -10,7 +10,7 @@ const { scriptSection } = content
 
 export function ScriptSection() {
   return (
-    <Section id="how-it-works">
+    <Section id="create-script">
       <Container>
         <Grid className="gap-section">
           <Col span={4} spanMd={8} spanLg={8} className="lg:col-start-3">

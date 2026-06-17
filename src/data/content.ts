@@ -58,10 +58,55 @@ export const content = {
       { name: 'Stanford', src: '/images/logos/stanford.png' },
     ],
   },
-  nailIt: {
-    title: 'Nail it. Every time.',
-    description: 'Say goodbye to umms and ahhhs. Reduce your production time and costs.',
-    cta: 'Try Speakflow Free',
+  howItWorks: {
+    eyebrow: 'HOW IT WORKS',
+    title: 'Nail the take without memorizing every word',
+    intro:
+      'Speakflow helps you write, rehearse, collaborate, and record from the setup you already use.',
+    steps: [
+      {
+        number: '01',
+        title: 'Read naturally with Flow',
+        copy: 'Say goodbye to umms and ahhhs. Flow follows your voice as you speak, so you can stay present instead of chasing the script.',
+        primaryCta: 'Try Flow free',
+        primaryCtaHref: '#',
+        secondaryCta: 'See how it works',
+        secondaryCtaHref: '#',
+        media: {
+          type: 'image',
+          src: '/images/how-it-works/step-01-flow.png',
+          alt: 'Creator recording with Speakflow Flow voice-controlled teleprompter',
+        },
+      },
+      {
+        number: '02',
+        title: 'Collaborate on every script',
+        copy: 'Invite your team to write, edit, organize, and keep track of scripts together before recording starts.',
+        primaryCta: 'Create a workspace',
+        primaryCtaHref: '#',
+        secondaryCta: 'View team features',
+        secondaryCtaHref: '#',
+        media: {
+          type: 'image',
+          src: '/images/how-it-works/step-02-collaborate.png',
+          alt: 'Speakflow team collaboration and comment interface',
+        },
+      },
+      {
+        number: '03',
+        title: 'Control your setup from anywhere',
+        copy: 'Scroll your tablet from your phone, your phone from your computer, or run multiple screens with Remote.',
+        primaryCta: 'Start recording',
+        primaryCtaHref: '#',
+        secondaryCta: 'Learn about Remote',
+        secondaryCtaHref: '#',
+        media: {
+          type: 'image',
+          src: '/images/how-it-works/step-03-remote.png',
+          alt: 'Speakflow Remote syncing teleprompter across multiple screens',
+        },
+      },
+    ],
   },
   workflow: {
     title: 'Your workflow. In Speakflow.',
@@ -73,18 +118,21 @@ export const content = {
         title: 'Works where you do',
         description:
           'Run Speakflow on laptop, tablet, or phone anywhere you need to record.',
+        media: media.runOnOneScreen,
       },
       {
         label: 'Dashboard',
         title: 'Organize and manage your scripts',
         description:
           'Keep scripts sorted, easy to find, and ready for your next recording session.',
+        media: media.manageWorkflow,
       },
       {
         label: 'Team',
         title: 'Bring your crew',
         description:
           'Share scripts with teammates so everyone records from the same version.',
+        media: media.manageWorkflow,
       },
     ],
   },

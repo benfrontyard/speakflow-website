@@ -1,9 +1,9 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
+import { MediaAsset } from '../components/MediaAsset'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
-import { VisualPlaceholder } from '../components/VisualPlaceholder'
 import { content } from '../data/content'
 
 const { workflow } = content
@@ -25,10 +25,12 @@ export function Workflow() {
             <Col key={feature.label} span={4} spanMd={4} spanLg={4}>
               <Reveal delay={index * 0.08}>
                 <article className="flex flex-col gap-16">
-                  <VisualPlaceholder
-                    aspectRatio="aspect-[4/3]"
+                  <MediaAsset
+                    source={feature.media}
+                    aspectRatio="aspect-video"
+                    objectFit="contain"
+                    className="rounded-lg-4 bg-surface-alt shadow-200"
                     label={feature.label}
-                    className="shadow-200"
                   />
                   <div className="flex flex-col gap-8 px-4">
                     <h3 className="text-h6">{feature.title}</h3>

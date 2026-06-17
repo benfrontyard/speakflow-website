@@ -10,6 +10,7 @@ export type MediaAssetSource =
 type MediaAssetProps = {
   source: MediaAssetSource
   aspectRatio?: string
+  objectFit?: 'cover' | 'contain'
   className?: string
   label?: string
 }
@@ -36,6 +37,7 @@ function LottiePlayer({
 export function MediaAsset({
   source,
   aspectRatio = 'aspect-video',
+  objectFit = 'cover',
   className = '',
   label,
 }: MediaAssetProps) {
@@ -86,7 +88,7 @@ export function MediaAsset({
         <img
           src={source.src}
           alt={source.alt ?? label ?? ''}
-          className="h-full w-full object-cover"
+          className={`h-full w-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
           loading="lazy"
         />
       </div>

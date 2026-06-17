@@ -3,7 +3,7 @@ import { BlogPreview } from './sections/BlogPreview'
 import { CTA } from './sections/CTA'
 import { Footer } from './sections/Footer'
 import { Hero } from './sections/Hero'
-import { NailIt } from './sections/NailIt'
+import { HowItWorks } from './sections/HowItWorks'
 import { ScriptSection } from './sections/ScriptSection'
 import { Testimonials } from './sections/Testimonials'
 import { UsedBy } from './sections/UsedBy'
@@ -17,7 +17,7 @@ function App() {
       <ScriptSection />
       <UsedBy />
       <Testimonials />
-      <NailIt />
+      <HowItWorks />
       <Workflow />
       <BlogPreview />
       <CTA />

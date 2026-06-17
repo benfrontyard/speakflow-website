@@ -71,7 +71,8 @@ function BlogCard({
       <a href={href} className="flex flex-col gap-16">
         <MediaAsset
           source={image}
-          aspectRatio="aspect-[4/3]"
+          aspectRatio="aspect-video"
+          objectFit="contain"
           className="rounded-lg-6 bg-transparent transition-shadow duration-150 group-hover:shadow-200"
         />
         <h3 className="text-h6 text-text-primary">{title}</h3>
