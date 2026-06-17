@@ -6,9 +6,9 @@ const { footer } = content
 
 export function Footer() {
   return (
-    <footer id="footer" className="bg-accent py-48 text-accent-alt md:py-80">
+    <footer id="footer" className="bg-accent py-[var(--space-section)] text-accent-alt">
       <Container>
-        <Grid className="gap-y-48">
+        <Grid className="gap-section">
           <Col span={4} spanMd={4} spanLg={3}>
             <span className="font-display text-h6">Speakflow</span>
           </Col>

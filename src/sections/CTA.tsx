@@ -28,7 +28,7 @@ export function CTA() {
                 <div className="relative flex flex-col items-center gap-24">
                   <h2 className="text-h2">{cta.headline}</h2>
                   <p className="text-body-lg text-text-secondary-alt">{cta.body}</p>
-                  <Button variant="accent">{cta.ctaLabel}</Button>
+                  <Button size="lg">{cta.ctaLabel}</Button>
                 </div>
               </div>
             </Reveal>

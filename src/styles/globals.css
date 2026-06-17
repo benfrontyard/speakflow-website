@@ -114,6 +114,102 @@
     box-shadow: var(--shadow-500);
   }
 
+  .text-shadow-200 {
+    text-shadow: var(--shadow-200);
+  }
+
+  .drop-shadow-200 {
+    filter: var(--drop-shadow-200);
+  }
+
+  .btn-base {
+    @apply inline-flex cursor-pointer items-center justify-center gap-8 whitespace-nowrap font-medium transition-all duration-150;
+  }
+
+  .btn-primary {
+    border-radius: var(--radius-md);
+    color: var(--color-accent-alt) !important;
+    background:
+      radial-gradient(
+        112.54% 100% at 49.26% 0%,
+        var(--color-button-primary-gradient-start),
+        var(--color-button-primary-gradient-end) 76.44%
+      ),
+      var(--color-button-primary);
+    box-shadow:
+      0 1.5px var(--color-button-primary-highlight) inset,
+      0 2px 4px rgba(0, 0, 0, 0.4),
+      0 0 0 1.5px var(--color-button-primary-border);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 2.5px var(--color-button-primary-highlight) inset,
+      0 2px 7px rgba(0, 0, 0, 0.5),
+      0 0 0 1.5px var(--color-button-primary-border);
+  }
+
+  .btn-primary:active {
+    transform: scale(1.05);
+    box-shadow: 0 0 8px 1px var(--color-button-primary-glow);
+  }
+
+  .btn-tertiary {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary) !important;
+    background-color: transparent;
+  }
+
+  .btn-tertiary:hover {
+    background-color: var(--color-interactive-overlay);
+  }
+
+  .btn-tertiary-on-dark {
+    border-color: color-mix(in srgb, var(--color-accent-alt) 30%, transparent);
+    color: var(--color-accent-alt) !important;
+    background-color: transparent;
+  }
+
+  .btn-tertiary-on-dark:hover {
+    color: var(--color-accent-alt) !important;
+    background-color: transparent;
+  }
+
+  .btn-sm {
+    padding: 0.375rem 1rem;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+  }
+
+  .btn-md {
+    padding: 0.5rem 1.2rem;
+    font-size: var(--text-body-sm-size);
+    line-height: var(--text-body-sm-line);
+  }
+
+  .btn-lg {
+    padding: 0.625rem 2rem;
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+  }
+
+  .gap-section {
+    row-gap: var(--space-section-gap);
+  }
+
+  .gap-section-xl {
+    row-gap: var(--space-xl-responsive);
+  }
+
+  @media (min-width: 768px) {
+    .gap-section-md-xl {
+      row-gap: var(--space-xl-responsive);
+    }
+  }
+
   .visual-checkerboard {
     background-color: var(--color-surface-alt);
     background-image:

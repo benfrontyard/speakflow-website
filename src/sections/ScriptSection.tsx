@@ -12,7 +12,7 @@ export function ScriptSection() {
   return (
     <Section id="how-it-works">
       <Container>
-        <Grid className="gap-y-48">
+        <Grid className="gap-section">
           <Col span={4} spanMd={8} spanLg={8} className="lg:col-start-3">
             <Reveal className="flex flex-col items-center gap-24 text-center">
               <h2 className="text-h2">
@@ -23,7 +23,7 @@ export function ScriptSection() {
                 ))}
               </h2>
               <p className="text-body-lg text-text-secondary-alt">{scriptSection.description}</p>
-              <Button variant="accent">{scriptSection.cta}</Button>
+              <Button>{scriptSection.cta}</Button>
             </Reveal>
           </Col>
 

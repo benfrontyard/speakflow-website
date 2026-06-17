@@ -12,12 +12,12 @@ export function Workflow() {
   return (
     <Section id="workflow">
       <Container>
-        <Grid className="gap-y-48 md:gap-y-80">
+        <Grid className="gap-section gap-section-md-xl">
           <Col span={4} spanMd={8} spanLg={8} className="lg:col-start-3">
             <Reveal className="flex flex-col items-center gap-16 text-center">
               <h2 className="text-h2">{workflow.title}</h2>
               <p className="text-body-lg text-text-secondary-alt">{workflow.description}</p>
-              <Button variant="accent">{workflow.cta}</Button>
+              <Button>{workflow.cta}</Button>
             </Reveal>
           </Col>
 

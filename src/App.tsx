@@ -1,5 +1,5 @@
+import { Header } from './components/Header'
 import { BlogPreview } from './sections/BlogPreview'
-import { Creators } from './sections/Creators'
 import { CTA } from './sections/CTA'
 import { Footer } from './sections/Footer'
 import { Hero } from './sections/Hero'
@@ -12,13 +12,13 @@ import { Workflow } from './sections/Workflow'
 function App() {
   return (
     <main>
+      <Header />
       <Hero />
       <ScriptSection />
       <UsedBy />
-      <Creators />
+      <Testimonials />
       <NailIt />
       <Workflow />
-      <Testimonials />
       <BlogPreview />
       <CTA />
       <Footer />

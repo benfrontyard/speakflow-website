@@ -43,14 +43,19 @@ export const content = {
     media: media.manageWorkflow,
   },
   usedBy: {
-    title: 'Trusted By',
-    logos: ['Logitech', 'ESPN', 'Facebook', 'Google', 'Mashable', 'LinkedIn', 'Marvel'],
-  },
-  creators: {
-    title: ['Loved by creators who', 'want to sound natural'],
-    items: [
-      { name: 'Gabriel Pato', role: 'Youtuber · 700k+' },
-      { name: 'Gabriel Pato', role: 'Youtuber · 700k+' },
+    title: 'Used by nice folks at',
+    logos: [
+      { name: 'UCLA', src: '/images/logos/ucla.png' },
+      { name: 'Logitech', src: '/images/logos/logitech.png' },
+      { name: 'LinkedIn', src: '/images/logos/linkedin.png' },
+      { name: 'Google', src: '/images/logos/google.png' },
+      { name: 'Apple', src: '/images/logos/apple.png' },
+      { name: 'Facebook', src: '/images/logos/facebook.png' },
+      { name: 'Marvel', src: '/images/logos/marvel.png' },
+      { name: 'ESPN', src: '/images/logos/espn.png' },
+      { name: 'Shopify', src: '/images/logos/shopify.png' },
+      { name: 'HubSpot', src: '/images/logos/hubspot.png' },
+      { name: 'Stanford', src: '/images/logos/stanford.png' },
     ],
   },
   nailIt: {
@@ -84,42 +89,62 @@ export const content = {
     ],
   },
   testimonials: {
-    title: ['Loved by creators who', 'want to sound natural'],
-    items: [
+    title: ['Built with the creators', "leading what's next"],
+    subtitle: 'Real videos. Real scale. Real outcomes.',
+    viewAll: 'View Customer Stories',
+    viewAllHref: '#',
+    featured: [
+      {
+        name: 'Andrew Johnson',
+        role: 'Founder, No Walls Studio',
+        video: '/images/testimonials/andrew-johnson.mp4',
+        logo: { src: '/images/testimonials/nws.svg', alt: 'No Walls Studio' },
+        href: '#',
+      },
+      {
+        name: 'Rasmus Kalms',
+        role: 'CPO, Anthill',
+        video: '/images/testimonials/rasmus-kalms.mp4',
+        logo: { src: '/images/testimonials/anthill.svg', alt: 'Anthill' },
+        href: '#',
+      },
+    ],
+    quotes: [
       {
         quote:
-          'I absolutely love Speakflow. Every time I use it I think I want to build an entire recording studio just so I can use it more. It honestly turned my 5-hour video sessions into 20 mins.',
-        author: 'Gabriel Pato',
-        role: 'Founder · Segmetrics',
+          'Speakflow helped us deliver polished presentations without memorizing a single line.',
+        company: 'Logitech',
+        logo: { src: '/images/logos/logitech.png', alt: 'Logitech' },
+      },
+      {
+        quote: 'Speakflow is a partner that accelerates our content production.',
+        company: 'ESPN',
+        logo: { src: '/images/logos/espn.png', alt: 'ESPN' },
       },
       {
         quote:
-          "It is really great! I've been testing lots of teleprompter apps to find a solution that works well for me as a Youtube creator and so far Speakflow is the best.",
-        author: 'Gabriel Pato',
-        role: 'Youtuber · 700k+',
+          "Speakflow's platform offers the flexibility, scalability, and ease we needed.",
+        company: 'Google',
+        logo: { src: '/images/logos/google.png', alt: 'Google' },
       },
       {
-        quote:
-          'I absolutely love Speakflow. Every time I use it I think I want to build an entire recording studio just so I can use it more. It honestly turned my 5-hour video sessions into 20 mins.',
-        author: 'Gabriel Pato',
-        role: 'Founder · Segmetrics',
-      },
-      {
-        quote:
-          "It is really great! I've been testing lots of teleprompter apps to find a solution that works well for me as a Youtube creator and so far Speakflow is the best.",
-        author: 'Gabriel Pato',
-        role: 'Youtuber · 700k+',
+        quote: 'With Speakflow, we are able to reliably expand our video offerings.',
+        company: 'LinkedIn',
+        logo: { src: '/images/logos/linkedin.png', alt: 'LinkedIn' },
       },
     ],
   },
   blogPreview: {
-    title: 'From the blog',
-    subtitle: 'Product news, tips, & updates',
-    viewAll: 'View All',
+    title: 'Latest Insights',
+    viewAll: 'Explore Journal',
+    viewAllHref: '#',
     posts: [
       {
         title: 'Speakflow guide',
+        category: 'Product',
+        date: '18 FEB 2026',
         excerpt: 'Run Speakflow on phone and tablet, synced and ready to record.',
+        href: '#',
         image: {
           type: 'image',
           src: '/images/blog/speakflow-guide.png',
@@ -128,7 +153,10 @@ export const content = {
       },
       {
         title: 'Follow your voice',
+        category: 'Features',
+        date: '17 FEB 2026',
         excerpt: 'Voice-controlled scrolling that keeps up with your pacing.',
+        href: '#',
         image: {
           type: 'image',
           src: '/images/blog/follow-your-voice.png',
@@ -137,7 +165,10 @@ export const content = {
       },
       {
         title: 'Customize your teleprompter',
+        category: 'Tips',
+        date: '16 FEB 2026',
         excerpt: 'Tune scrolling, typography, and layout to match how you deliver.',
+        href: '#',
         image: {
           type: 'image',
           src: '/images/blog/customize-your-teleprompter.png',

@@ -1,9 +1,14 @@
 import { useState } from 'react'
+import { Button } from './Button'
 import { Container } from './Container'
 import { Col, Grid } from './Grid'
 import { content } from '../data/content'
+import { useHeaderOnDarkBackground } from '../hooks/useHeaderOnDarkBackground'
 
 const { header } = content
+
+const navLinkClass =
+  'px-12 py-8 text-body-sm font-medium transition-colors duration-150'
 
 function ChevronDownIcon() {
   return (
@@ -27,17 +32,24 @@ function ChevronDownIcon() {
 
 export function Header() {
   const [resourcesOpen, setResourcesOpen] = useState(false)
+  const onDarkBackground = useHeaderOnDarkBackground()
+
+  const navToneClass = onDarkBackground
+    ? 'text-accent-alt/90 hover:text-accent-alt text-shadow-200'
+    : 'text-text-primary/90 hover:text-text-primary'
 
   return (
-    <header className="absolute inset-x-0 top-0 z-20">
+    <header className="fixed inset-x-0 top-0 z-20">
       <Container>
         <Grid className="items-center py-32">
           <Col span={2} spanLg={2}>
             <a href="#" className="inline-flex shrink-0">
               <img
-                src="/speakflow-wordmark-light.svg"
+                src={onDarkBackground ? '/speakflow-wordmark-light.svg' : '/speakflow-wordmark-dark.svg'}
                 alt="Speakflow"
-                className="h-32 w-auto"
+                className={`h-32 w-auto transition-[filter,opacity] duration-300 ${
+                  onDarkBackground ? 'drop-shadow-200' : ''
+                }`}
                 width={180}
                 height={32}
               />
@@ -56,7 +68,7 @@ export function Header() {
               >
                 <button
                   type="button"
-                  className="inline-flex items-center gap-8 px-12 py-8 text-body-sm font-medium text-accent-alt/90 transition-colors duration-150 hover:text-accent-alt"
+                  className={`inline-flex items-center gap-8 ${navLinkClass} ${navToneClass}`}
                   aria-expanded={resourcesOpen}
                   aria-haspopup="true"
                   onClick={() => setResourcesOpen((open) => !open)}
@@ -84,7 +96,7 @@ export function Header() {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="px-12 py-8 text-body-sm font-medium text-accent-alt/90 transition-colors duration-150 hover:text-accent-alt"
+                  className={`${navLinkClass} ${navToneClass}`}
                 >
                   {link.label}
                 </a>
@@ -94,18 +106,17 @@ export function Header() {
 
           <Col span={2} spanLg={2} className="hidden lg:block">
             <div className="flex items-center justify-end gap-16">
-              <a
+              <Button
                 href={header.signInHref}
-                className="px-12 py-8 text-body-sm font-medium text-accent-alt/90 transition-colors duration-150 hover:text-accent-alt"
+                variant="tertiary"
+                tone={onDarkBackground ? 'on-dark' : 'default'}
+                className={onDarkBackground ? 'border-transparent' : undefined}
               >
                 {header.signIn}
-              </a>
-              <a
-                href={header.ctaHref}
-                className="inline-flex items-center justify-center rounded-md bg-accent-alt px-24 py-12 text-body-sm font-medium text-text-primary transition-colors duration-150 hover:bg-accent-alt/90"
-              >
+              </Button>
+              <Button href={header.ctaHref} size="md">
                 {header.cta}
-              </a>
+              </Button>
             </div>
           </Col>
         </Grid>

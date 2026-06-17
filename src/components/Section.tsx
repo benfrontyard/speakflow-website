@@ -4,11 +4,15 @@ type SectionProps = {
   id: string
   children: ReactNode
   className?: string
+  size?: 'default' | 'compact'
 }
 
-export function Section({ id, children, className = '' }: SectionProps) {
+export function Section({ id, children, className = '', size = 'default' }: SectionProps) {
+  const paddingClass =
+    size === 'compact' ? 'py-[var(--space-section-compact)]' : 'py-[var(--space-section)]'
+
   return (
-    <section id={id} className={`py-16 md:py-24 lg:py-32 ${className}`}>
+    <section id={id} className={`${paddingClass} ${className}`}>
       {children}
     </section>
   )

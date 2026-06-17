@@ -1,7 +1,6 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
-import { Header } from '../components/Header'
 import { HeroVideoBackground } from '../components/HeroVideoBackground'
 import { Reveal } from '../components/Reveal'
 import { content } from '../data/content'
@@ -12,9 +11,8 @@ export function Hero() {
   return (
     <section id="hero" className="relative flex min-h-svh flex-col justify-end overflow-hidden">
       <HeroVideoBackground />
-      <Header />
 
-      <Container className="relative z-10 pb-48 md:pb-80">
+      <Container className="relative z-10 pb-[var(--space-xl-responsive)]">
         <Grid className="items-end">
           <Col span={4} spanMd={6} spanLg={7}>
             <Reveal className="flex flex-col items-start gap-24 text-left">
@@ -26,7 +24,7 @@ export function Hero() {
                 ))}
               </h1>
               <p className="max-w-xl text-body-lg text-accent-alt/85">{hero.subhead}</p>
-              <Button variant="gradient">{hero.primaryCta}</Button>
+              <Button size="lg">{hero.primaryCta}</Button>
             </Reveal>
           </Col>
         </Grid>

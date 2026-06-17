@@ -20,6 +20,15 @@
   --color-success: #16a34a;
   --color-warning: #f59e0b;
 
+  /* Buttons — Speakflow primary gradient */
+  --color-button-primary: #f7006a;
+  --color-button-primary-gradient-start: #ffa200;
+  --color-button-primary-gradient-end: rgba(255, 76, 64, 0.5);
+  --color-button-primary-border: #f7006a;
+  --color-button-primary-glow: rgba(212, 10, 124, 0.73);
+  --color-button-primary-highlight: rgba(255, 255, 255, 0.3);
+  --color-interactive-overlay: rgba(0, 0, 0, 0.07);
+
   /* Typography — font families (marketing site uses Geist throughout) */
   --font-display: "Geist", sans-serif;
   --font-body: "Geist", sans-serif;
@@ -100,6 +109,8 @@
     0px 10px 20px 0px rgba(0, 0, 0, 0.04), 0px 18px 36px 0px rgba(0, 0, 0, 0.03);
   --shadow-500: 0px 3px 6px 0px rgba(0, 0, 0, 0.09), 0px 7px 14px 0px rgba(0, 0, 0, 0.07),
     0px 16px 28px 0px rgba(0, 0, 0, 0.05), 0px 28px 50px 0px rgba(0, 0, 0, 0.03);
+  --drop-shadow-200: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.06))
+    drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.04)) drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.03));
 
   /* Motion */
   --motion-duration-fast: 150ms;
@@ -109,17 +120,21 @@
 
   /* Breakpoints (reference) */
   --breakpoint-tablet: 768px;
-  --breakpoint-desktop: 1440px;
+  --breakpoint-desktop: 1024px;
 
-  /* Grid — Slate DS (Mobile 4 / Tablet 8 / Desktop 12 columns) */
-  --grid-max-width: 1440px;
+  /* Layout spacing — responsive scale inspired by paperclip.ing */
+  --space-section: clamp(5rem, calc(3rem + 5.5vw), 9rem);
+  --space-section-compact: clamp(3.125rem, calc(2rem + 3vw), 6.25rem);
+  --space-section-gap: clamp(2rem, 5vw, 6rem);
+  --space-xl-responsive: clamp(3rem, calc(2rem + 3vw), 5rem);
+
+  /* Grid — Mobile 4 / Tablet 8 / Desktop 12 columns */
+  --grid-max-width: 1280px;
   --grid-columns-mobile: 4;
   --grid-columns-tablet: 8;
   --grid-columns-desktop: 12;
   --grid-gutter: var(--space-24);
-  --grid-margin-mobile: var(--space-20);
-  --grid-margin-tablet: var(--space-32);
-  --grid-margin-desktop: var(--space-40);
+  --grid-margin: var(--space-24);
 }
 
 @theme {
@@ -190,9 +205,10 @@
 
   /* Breakpoints */
   --breakpoint-md: 768px;
-  --breakpoint-lg: 1440px;
+  --breakpoint-lg: 1024px;
 
   /* Grid */
   --grid-max-width: var(--grid-max-width);
   --grid-gutter: var(--grid-gutter);
+  --grid-margin: var(--grid-margin);
 }
