@@ -47,16 +47,23 @@ function useStepMotion() {
   }
 }
 
+const stepBodyMaxWidthClass = 'max-w-[33.75rem]'
+
+const secondaryCtaClassName =
+  'border-black/[0.08] text-text-secondary-alt shadow-none hover:bg-black/[0.03]'
+
 function StepDots({
   activeStep,
   stepCount,
+  onSelectStep,
 }: {
   activeStep: number
   stepCount: number
+  onSelectStep: (index: number) => void
 }) {
   return (
     <ol
-      className="flex items-center gap-8"
+      className="flex items-center gap-6"
       aria-label="How it works steps"
     >
       {Array.from({ length: stepCount }, (_, index) => {
@@ -64,14 +71,21 @@ function StepDots({
 
         return (
           <li key={index}>
-            <span
-              className={`block h-8 rounded-full transition-[width,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                isActive
-                  ? 'w-24 bg-[color-mix(in_srgb,var(--color-accent-5)_72%,transparent)]'
-                  : 'w-8 bg-black/[0.08]'
-              }`}
+            <button
+              type="button"
+              onClick={() => onSelectStep(index)}
+              className="-m-4 cursor-pointer rounded-full p-4 transition-opacity duration-150 hover:opacity-80"
+              aria-label={`Go to step ${index + 1}`}
               aria-current={isActive ? 'step' : undefined}
-            />
+            >
+              <span
+                className={`block h-8 rounded-full transition-[width,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isActive
+                    ? 'w-24 bg-[color-mix(in_srgb,var(--color-accent-5)_72%,transparent)]'
+                    : 'w-8 bg-black/[0.08]'
+                }`}
+              />
+            </button>
           </li>
         )
       })}
@@ -82,16 +96,18 @@ function StepDots({
 function StepIntro({ compact = false }: { compact?: boolean }) {
   return (
     <header
-      className={`flex max-w-[36rem] flex-col transition-[gap] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        compact ? 'gap-8' : 'gap-16'
+      className={`flex flex-col transition-[gap] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        compact ? 'max-w-[32rem] gap-12' : 'max-w-[36rem] gap-16'
       }`}
     >
       <Pill variant="subtle" uppercase>
         {howItWorks.eyebrow}
       </Pill>
       <h2
-        className={`transition-[font-size,line-height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          compact ? 'text-h4' : 'text-h2'
+        className={`transition-[font-size,line-height,font-weight] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          compact
+            ? 'text-h6 font-semibold tracking-[-0.02em] text-text-primary'
+            : 'text-h2'
         }`}
       >
         {howItWorks.title}
@@ -107,34 +123,54 @@ function StepIntro({ compact = false }: { compact?: boolean }) {
   )
 }
 
+function StepMetadataRow({ step }: { step: Step }) {
+  return (
+    <div className="flex items-center gap-8">
+      <span className="text-caption font-medium tabular-nums text-text-tertiary">
+        {step.number}
+      </span>
+      <Pill variant="brand" size="sm" uppercase>
+        {step.pill}
+      </Pill>
+    </div>
+  )
+}
+
+function StepFeatureCopy({ step }: { step: Step }) {
+  return (
+    <div className="flex flex-col gap-20">
+      <h3 className="text-h2 leading-[1.1] tracking-[-0.03em]">{step.title}</h3>
+      <p className={`text-body-lg text-text-secondary ${stepBodyMaxWidthClass}`}>
+        {step.copy}
+      </p>
+      <div className="flex flex-wrap items-center gap-8">
+        <Button href={step.primaryCtaHref}>{step.primaryCta}</Button>
+        <Button
+          variant="tertiary"
+          href={step.secondaryCtaHref}
+          className={secondaryCtaClassName}
+        >
+          {step.secondaryCta}
+        </Button>
+      </div>
+    </div>
+  )
+}
+
 function StepContent({ step }: { step: Step }) {
   const motionProps = useStepMotion()
 
   return (
     <motion.div
       key={step.number}
-      className="flex max-w-[36rem] flex-col gap-16"
+      className="flex max-w-[36rem] flex-col gap-20"
       initial={motionProps.initial}
       animate={motionProps.animate}
       exit={motionProps.exit}
       transition={motionProps.transition}
     >
-      <div className="flex flex-wrap items-center gap-10">
-        <Pill variant="brand" size="sm" uppercase>
-          {step.pill}
-        </Pill>
-        <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-tertiary">
-          {step.number}
-        </p>
-      </div>
-      <h3 className="text-h3">{step.title}</h3>
-      <p className="text-body-lg text-text-secondary-alt">{step.copy}</p>
-      <div className="flex flex-wrap gap-12 pt-4">
-        <Button href={step.primaryCtaHref}>{step.primaryCta}</Button>
-        <Button variant="tertiary" href={step.secondaryCtaHref}>
-          {step.secondaryCta}
-        </Button>
-      </div>
+      <StepMetadataRow step={step} />
+      <StepFeatureCopy step={step} />
     </motion.div>
   )
 }
@@ -204,10 +240,12 @@ function DesktopStickySteps({
   activeStep,
   containerRef,
   stepCount,
+  onSelectStep,
 }: {
   activeStep: number
   containerRef: RefObject<HTMLDivElement | null>
   stepCount: number
+  onSelectStep: (index: number) => void
 }) {
   const step = howItWorks.steps[activeStep] ?? howItWorks.steps[0]
 
@@ -223,25 +261,33 @@ function DesktopStickySteps({
         <div className="flex h-full items-center">
           <Grid className="w-full items-center gap-x-48 gap-y-24">
             <Col span={4} spanMd={8} spanLg={5}>
-              <div className="flex flex-col gap-24">
+              <div className="flex flex-col gap-32">
                 <StepIntro compact />
-                <StepDots activeStep={activeStep} stepCount={stepCount} />
-                <AnimatePresence mode="wait" initial={false}>
-                  {step ? <StepContent key={step.number} step={step} /> : null}
-                </AnimatePresence>
+                <div className="flex flex-col gap-20">
+                  <StepDots
+                    activeStep={activeStep}
+                    stepCount={stepCount}
+                    onSelectStep={onSelectStep}
+                  />
+                  <AnimatePresence mode="wait" initial={false}>
+                    {step ? <StepContent key={step.number} step={step} /> : null}
+                  </AnimatePresence>
+                </div>
               </div>
             </Col>
 
             <Col span={4} spanMd={8} spanLg={7}>
-              {isFlowDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0]) ? (
-                <div className="radius-frame-lg-5 radius-inset-4 overflow-hidden bg-black p-4 shadow-300 md:p-6">
-                  <StepVisualFrame activeStep={activeStep} />
-                </div>
-              ) : (
-                <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 p-8 md:p-10">
-                  <StepVisualFrame activeStep={activeStep} />
-                </div>
-              )}
+              <div className="mx-auto w-full max-w-[93%] translate-y-12 lg:translate-y-16">
+                {isFlowDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0]) ? (
+                  <div className="radius-frame-lg-5 radius-inset-4 overflow-hidden bg-black p-4 shadow-300 md:p-6">
+                    <StepVisualFrame activeStep={activeStep} />
+                  </div>
+                ) : (
+                  <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 p-8 md:p-10">
+                    <StepVisualFrame activeStep={activeStep} />
+                  </div>
+                )}
+              </div>
             </Col>
           </Grid>
         </div>
@@ -256,24 +302,10 @@ function MobileSteps() {
       <StepIntro />
 
       {howItWorks.steps.map((step) => (
-        <article key={step.number} className="flex flex-col gap-24">
-          <div className="flex max-w-[36rem] flex-col gap-16">
-            <div className="flex flex-wrap items-center gap-10">
-              <Pill variant="brand" size="sm" uppercase>
-                {step.pill}
-              </Pill>
-              <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-tertiary">
-                {step.number}
-              </p>
-            </div>
-            <h3 className="text-h3">{step.title}</h3>
-            <p className="text-body-lg text-text-secondary-alt">{step.copy}</p>
-            <div className="flex flex-wrap gap-12 pt-4">
-              <Button href={step.primaryCtaHref}>{step.primaryCta}</Button>
-              <Button variant="tertiary" href={step.secondaryCtaHref}>
-                {step.secondaryCta}
-              </Button>
-            </div>
+        <article key={step.number} className="flex flex-col gap-32">
+          <div className="flex max-w-[36rem] flex-col gap-20">
+            <StepMetadataRow step={step} />
+            <StepFeatureCopy step={step} />
           </div>
 
           {isFlowDemoStep(step) ? (
@@ -295,7 +327,7 @@ function MobileSteps() {
 
 export function HowItWorks() {
   const stepCount = howItWorks.steps.length
-  const { activeStep, containerRef } = useActiveStep({ stepCount })
+  const { activeStep, containerRef, goToStep } = useActiveStep({ stepCount })
 
   return (
     <Section id="how-it-works" className="relative bg-background/80 py-0 max-lg:py-[var(--space-section)]">
@@ -304,6 +336,7 @@ export function HowItWorks() {
           activeStep={activeStep}
           containerRef={containerRef}
           stepCount={stepCount}
+          onSelectStep={goToStep}
         />
 
         <MobileSteps />
