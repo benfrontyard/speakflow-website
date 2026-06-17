@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import type { RefObject } from 'react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
+import { FlowTeleprompterPreview } from '../components/FlowTeleprompterPreview'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
 import { Pill } from '../components/Pill'
@@ -25,6 +26,10 @@ const stickyTopClass = 'top-[var(--nav-height,96px)]'
 const stickyHeightClass = 'h-[calc(100vh-var(--nav-height,96px))]'
 
 type Step = (typeof howItWorks.steps)[number]
+
+function isFlowDemoStep(step: Step) {
+  return 'demo' in step && step.demo === 'flow-teleprompter'
+}
 
 function useStepMotion() {
   const prefersReducedMotion = useReducedMotion()
@@ -148,19 +153,10 @@ function StepMedia({
 }) {
   const { prefersReducedMotion, transition } = useStepMotion()
 
-  return (
-    <motion.div
-      className="absolute inset-0 flex items-center justify-center"
-      aria-hidden={!isActive}
-      style={{ zIndex: isActive ? 1 : 0 }}
-      initial={false}
-      animate={{
-        opacity: isActive ? 1 : 0,
-        y: isActive || prefersReducedMotion ? 0 : 8,
-        visibility: isActive ? 'visible' : 'hidden',
-      }}
-      transition={transition}
-    >
+  const visual =
+    isFlowDemoStep(step) ? (
+      <FlowTeleprompterPreview script={howItWorks.flowScript} active={isActive} />
+    ) : (
       <MediaAsset
         source={step.media}
         aspectRatio={stepVisualAspectClass}
@@ -169,6 +165,22 @@ function StepMedia({
         label={step.title}
         eager={isActive}
       />
+    )
+
+  return (
+    <motion.div
+      className="absolute inset-0 flex items-center justify-center"
+      aria-hidden={!isActive}
+      style={{ zIndex: isActive ? 1 : 0 }}
+      initial={false}
+      animate={{
+        opacity: isActive ? 1 : 0,
+        y: isActive || prefersReducedMotion || isFlowDemoStep(step) ? 0 : 8,
+        visibility: isActive ? 'visible' : 'hidden',
+      }}
+      transition={transition}
+    >
+      {visual}
     </motion.div>
   )
 }
@@ -176,7 +188,11 @@ function StepMedia({
 function StepVisualFrame({ activeStep }: { activeStep: number }) {
   return (
     <div
-      className={`relative w-full overflow-hidden radius-inset bg-surface-alt/60 ${stepVisualAspectClass}`}
+      className={`relative w-full overflow-hidden radius-inset ${stepVisualAspectClass} ${
+        isFlowDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0])
+          ? 'bg-black'
+          : 'bg-surface-alt/60'
+      }`}
     >
       {howItWorks.steps.map((step, index) => (
         <StepMedia
@@ -207,7 +223,7 @@ function DesktopStickySteps({
       style={{ height: `${stepCount * 100}vh` }}
     >
       <div
-        className={`sticky ${stickyTopClass} ${stickyHeightClass} min-h-[calc(100vh-var(--nav-height,96px))] pb-[96px]`}
+        className={`sticky ${stickyTopClass} ${stickyHeightClass} min-h-[calc(100vh-var(--nav-height,96px))] pb-48`}
       >
         <div className="flex h-full items-center">
           <Grid className="w-full items-center gap-x-48 gap-y-24">
@@ -222,9 +238,15 @@ function DesktopStickySteps({
             </Col>
 
             <Col span={4} spanMd={8} spanLg={7}>
-              <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 p-8">
-                <StepVisualFrame activeStep={activeStep} />
-              </div>
+              {isFlowDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0]) ? (
+                <div className="radius-frame-lg-5 radius-inset-4 overflow-hidden bg-black p-4 shadow-300 md:p-6">
+                  <StepVisualFrame activeStep={activeStep} />
+                </div>
+              ) : (
+                <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 p-8 md:p-10">
+                  <StepVisualFrame activeStep={activeStep} />
+                </div>
+              )}
             </Col>
           </Grid>
         </div>
@@ -259,13 +281,17 @@ function MobileSteps() {
             </div>
           </div>
 
-          <MediaAsset
-            source={step.media}
-            aspectRatio={stepVisualAspectClass}
-            objectFit="contain"
-            className="rounded-lg-5 bg-surface-alt/60 shadow-200"
-            label={step.title}
-          />
+          {isFlowDemoStep(step) ? (
+            <FlowTeleprompterPreview script={howItWorks.flowScript} active />
+          ) : (
+            <MediaAsset
+              source={step.media}
+              aspectRatio={stepVisualAspectClass}
+              objectFit="contain"
+              className="rounded-lg-5 bg-surface-alt/60 shadow-200"
+              label={step.title}
+            />
+          )}
         </article>
       ))}
     </div>
@@ -293,7 +319,7 @@ export function HowItWorks() {
 
         <MobileSteps />
 
-        <div className="hidden h-24 lg:block" aria-hidden="true" />
+        <div className="hidden h-48 lg:block" aria-hidden="true" />
       </Container>
     </Section>
   )

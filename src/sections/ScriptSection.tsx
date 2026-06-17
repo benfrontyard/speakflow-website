@@ -1,7 +1,7 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
-import { MediaAsset } from '../components/MediaAsset'
+import { TeleprompterDemo } from '../components/TeleprompterDemo'
 import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
@@ -44,11 +44,9 @@ export function ScriptSection() {
           <Col span={4} spanMd={8} spanLg={12}>
             <Reveal delay={0.1}>
               <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 md:radius-inset-12 p-8 md:p-12">
-                <MediaAsset
-                  source={scriptSection.media}
-                  aspectRatio="aspect-[16/9]"
-                  className="radius-inset shadow-none"
-                  label="Create your next video"
+                <TeleprompterDemo
+                  videoSrc={scriptSection.demoVideo}
+                  script={scriptSection.demoScript}
                 />
               </div>
             </Reveal>
