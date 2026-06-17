@@ -2,42 +2,33 @@ import { useEffect, useRef, useState } from 'react'
 
 type UseActiveStepOptions = {
   stepCount: number
+  enabled?: boolean
 }
 
-function getActiveStepIndex(steps: HTMLElement[], anchorY: number) {
-  for (let index = steps.length - 1; index >= 0; index -= 1) {
-    const rect = steps[index].getBoundingClientRect()
-    if (rect.top <= anchorY && rect.bottom >= anchorY) {
-      return index
-    }
+function getScrollProgress(container: HTMLElement) {
+  const rect = container.getBoundingClientRect()
+  const scrollRange = container.offsetHeight - window.innerHeight
+  if (scrollRange <= 0) return 0
+
+  const progress = -rect.top / scrollRange
+
+  if (progress >= 1 || rect.bottom <= window.innerHeight) {
+    return 0.999
   }
 
-  let closestIndex = 0
-  let closestDistance = Number.POSITIVE_INFINITY
-
-  steps.forEach((step) => {
-    const stepIndex = Number(step.dataset.stepIndex)
-    if (Number.isNaN(stepIndex)) return
-
-    const rect = step.getBoundingClientRect()
-    const stepCenter = rect.top + rect.height / 2
-    const distance = Math.abs(stepCenter - anchorY)
-
-    if (distance < closestDistance) {
-      closestDistance = distance
-      closestIndex = stepIndex
-    }
-  })
-
-  return closestIndex
+  return Math.min(0.999, Math.max(0, progress))
 }
 
-export function useActiveStep({ stepCount }: UseActiveStepOptions) {
+function getActiveStepIndex(progress: number, stepCount: number) {
+  return Math.min(stepCount - 1, Math.floor(progress * stepCount))
+}
+
+export function useActiveStep({ stepCount, enabled = true }: UseActiveStepOptions) {
   const [activeStep, setActiveStep] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (stepCount === 0) return
+    if (!enabled || stepCount === 0) return
 
     let frame = 0
 
@@ -45,14 +36,8 @@ export function useActiveStep({ stepCount }: UseActiveStepOptions) {
       const container = containerRef.current
       if (!container) return
 
-      const steps = Array.from(
-        container.querySelectorAll<HTMLElement>('[data-step-index]'),
-      )
-
-      if (steps.length === 0) return
-
-      const anchorY = window.innerHeight * 0.45
-      const nextStep = getActiveStepIndex(steps, anchorY)
+      const progress = getScrollProgress(container)
+      const nextStep = getActiveStepIndex(progress, stepCount)
 
       setActiveStep((current) => (current === nextStep ? current : nextStep))
     }
@@ -63,6 +48,10 @@ export function useActiveStep({ stepCount }: UseActiveStepOptions) {
     }
 
     scheduleUpdate()
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scheduleUpdate)
+    })
+
     window.addEventListener('scroll', scheduleUpdate, { passive: true })
     window.addEventListener('resize', scheduleUpdate, { passive: true })
 
@@ -71,7 +60,7 @@ export function useActiveStep({ stepCount }: UseActiveStepOptions) {
       window.removeEventListener('scroll', scheduleUpdate)
       window.removeEventListener('resize', scheduleUpdate)
     }
-  }, [stepCount])
+  }, [stepCount, enabled])
 
   return { activeStep, containerRef }
 }

@@ -69,7 +69,8 @@
   --font-weight-bold: 700;
 
   /* Layout — fixed header offset for anchor scroll */
-  --scroll-margin-header: calc(var(--space-80) + var(--space-32));
+  --nav-height: 96px;
+  --scroll-margin-header: var(--nav-height);
 
   /* Typography — display & headings (fluid scale on small screens) */
   --text-display-size: clamp(2.25rem, calc(1.35rem + 4vw), 3.5rem);
