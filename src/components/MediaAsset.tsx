@@ -1,4 +1,4 @@
-import { useReducedMotion } from 'framer-motion'
+import { useReducedMotion } from 'motion/react'
 import { useLottie } from 'lottie-react'
 import { useEffect, useRef, useState } from 'react'
 
@@ -19,19 +19,28 @@ function LottiePlayer({
   animationData,
   autoplay,
   loop,
+  objectFit,
 }: {
   animationData: object
   autoplay: boolean
   loop: boolean
+  objectFit: 'cover' | 'contain'
 }) {
   const { View } = useLottie({
     animationData,
     loop,
     autoplay,
     style: { width: '100%', height: '100%' },
+    rendererSettings: {
+      preserveAspectRatio: objectFit === 'cover' ? 'xMidYMid slice' : 'xMidYMid meet',
+    },
   })
 
-  return View
+  return (
+    <div className="absolute -inset-x-[10%] -inset-y-[11%] overflow-hidden [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-hidden">
+      {View}
+    </div>
+  )
 }
 
 export function MediaAsset({
@@ -80,7 +89,7 @@ export function MediaAsset({
     }
   }, [source, isVisible, lottieData])
 
-  const wrapperClass = `${aspectRatio} w-full overflow-hidden rounded-lg-4 bg-surface-alt ${className}`
+  const wrapperClass = `${aspectRatio} relative isolate w-full overflow-hidden rounded-lg-4 bg-surface-alt ${className}`
 
   if (source.type === 'image') {
     return (
@@ -115,17 +124,20 @@ export function MediaAsset({
 
   return (
     <div ref={containerRef} className={wrapperClass} aria-label={label}>
-      {isVisible && lottieData ? (
-        <LottiePlayer
-          animationData={lottieData}
-          loop={!prefersReducedMotion}
-          autoplay={!prefersReducedMotion}
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center text-body-sm text-text-secondary-alt">
-          {label ?? 'Loading…'}
-        </div>
-      )}
+      <div className="relative h-full w-full overflow-hidden">
+        {isVisible && lottieData ? (
+          <LottiePlayer
+            animationData={lottieData}
+            loop={!prefersReducedMotion}
+            autoplay={!prefersReducedMotion}
+            objectFit={objectFit}
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center text-body-sm text-text-secondary-alt">
+            {label ?? 'Loading…'}
+          </div>
+        )}
+      </div>
     </div>
   )
 }

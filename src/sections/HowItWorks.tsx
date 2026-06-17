@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'motion/react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
@@ -34,7 +34,10 @@ function StepMedia({
       aria-hidden={!isActive}
       style={{ zIndex: isActive ? 1 : 0 }}
       initial={false}
-      animate={{ opacity: isActive ? 1 : 0 }}
+      animate={{
+        opacity: isActive ? 1 : 0,
+        visibility: isActive ? 'visible' : 'hidden',
+      }}
       transition={{
         duration: prefersReducedMotion ? 0.15 : 0.45,
         ease: [0.16, 1, 0.3, 1],

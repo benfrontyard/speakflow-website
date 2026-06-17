@@ -1,3 +1,4 @@
+import { ArrowUpRightIcon } from '@phosphor-icons/react'
 import type { ReactNode } from 'react'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
@@ -23,20 +24,6 @@ function BlogTag({
   )
 }
 
-function ArrowIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-      <path
-        d="M3 11L11 3M11 3H4.5M11 3V9.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 function ExploreJournalLink({ label, href }: { label: string; href: string }) {
   return (
     <a
@@ -47,7 +34,7 @@ function ExploreJournalLink({ label, href }: { label: string; href: string }) {
         {label}
       </span>
       <span className="flex size-40 shrink-0 items-center justify-center rounded-full bg-[#F9B14B] text-text-primary">
-        <ArrowIcon />
+        <ArrowUpRightIcon aria-hidden="true" size={14} />
       </span>
     </a>
   )

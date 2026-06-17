@@ -1,3 +1,4 @@
+import { CaretDownIcon } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { Button } from './Button'
 import { Container } from './Container'
@@ -9,26 +10,6 @@ const { header } = content
 
 const navLinkClass =
   'px-12 py-8 text-body-sm font-medium transition-colors duration-150'
-
-function ChevronDownIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="size-12 opacity-70"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.5 4.5L6 8L9.5 4.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
 
 export function Header() {
   const [resourcesOpen, setResourcesOpen] = useState(false)
@@ -74,7 +55,7 @@ export function Header() {
                   onClick={() => setResourcesOpen((open) => !open)}
                 >
                   Resources
-                  <ChevronDownIcon />
+                  <CaretDownIcon aria-hidden="true" className="size-12 opacity-70" />
                 </button>
 
                 {resourcesOpen ? (

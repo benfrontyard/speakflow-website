@@ -9,6 +9,10 @@ export const media = {
     type: 'lottie',
     src: '/media/Manage-your-workflow.json',
   },
+  createVideo: {
+    type: 'video',
+    src: '/media/purchaser_16x9.mp4',
+  },
 } satisfies Record<string, MediaAssetSource>
 
 export const content = {
@@ -30,12 +34,18 @@ export const content = {
     ctaHref: '#',
   },
   hero: {
-    pill: 'Voice-Controlled',
-    highlights: ['Browser-based', 'Multi-device', 'Team-ready'],
     headline: ['The teleprompter', 'that follows your voice'],
     subhead:
       'Reduce your production time, deliver better presentations, and record videos in your browser with Speakflow.',
-    primaryCta: 'Sign Up',
+    stats: [
+      { label: 'Active Creators', value: '50K+' },
+      { label: 'Videos Recorded', value: '1M+' },
+      { label: 'Countries', value: '120' },
+    ],
+    learnMore: {
+      label: 'Learn More',
+      href: '#how-it-works',
+    },
   },
   scriptSection: {
     pill: 'Write & Record',
@@ -43,7 +53,7 @@ export const content = {
     description:
       "Write or paste your script, then use Speakflow's teleprompter directly in your browser.",
     cta: 'Try Speakflow',
-    media: media.manageWorkflow,
+    media: media.createVideo,
   },
   usedBy: {
     title: 'Used by nice folks at',

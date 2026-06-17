@@ -26,7 +26,9 @@ export function HeroVideoBackground() {
         src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?${embedParams.toString()}`}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/40" />
+      <div className="absolute inset-0 bg-black/45" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/30 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
     </div>
   )
 }

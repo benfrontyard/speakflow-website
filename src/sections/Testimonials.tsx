@@ -1,3 +1,4 @@
+import { ArrowRightIcon, PlayIcon } from '@phosphor-icons/react'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
@@ -14,13 +15,7 @@ function PlayButton() {
       className="flex size-40 shrink-0 items-center justify-center rounded-full bg-white/95 shadow-200"
       aria-hidden="true"
     >
-      <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
-        <path
-          d="M1 1.5v11l10-5.5L1 1.5z"
-          fill="currentColor"
-          className="text-text-primary"
-        />
-      </svg>
+      <PlayIcon aria-hidden="true" size={12} weight="fill" className="text-text-primary" />
     </span>
   )
 }
@@ -119,7 +114,7 @@ export function Testimonials() {
                   className="inline-flex shrink-0 items-center gap-4 text-body-sm font-medium text-text-primary transition-opacity duration-150 hover:opacity-70"
                 >
                   {testimonials.viewAll}
-                  <span aria-hidden="true">→</span>
+                  <ArrowRightIcon aria-hidden="true" className="size-12" />
                 </a>
               </div>
             </Reveal>

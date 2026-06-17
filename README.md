@@ -20,7 +20,8 @@ Design tokens are sourced from Slate DS. Reference `@slate-ds` / `DESIGN.md` whe
 - TypeScript
 - Tailwind CSS
 - CSS variables for design tokens
-- Optional Framer Motion for key animation explorations
+- [Phosphor Icons](https://phosphoricons.com/) for icons (`@phosphor-icons/react`)
+- [Motion](https://motion.dev/) for animation (`motion/react`)
 
 ## Handoff Notes
 

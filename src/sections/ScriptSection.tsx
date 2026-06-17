@@ -37,7 +37,7 @@ export function ScriptSection() {
                 source={scriptSection.media}
                 aspectRatio="aspect-[16/9]"
                 className="shadow-300"
-                label="Manage your workflow"
+                label="Create your next video"
               />
             </Reveal>
           </Col>
