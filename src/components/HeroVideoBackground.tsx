@@ -50,9 +50,11 @@ export function HeroVideoBackground() {
           onLoad={() => setIsLoaded(true)}
         />
       ) : null}
-      <div className="absolute inset-0 bg-black/45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/30 to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25" />
+      {/* Targeted scrims — darken only where text sits, keep center/right bright */}
+      <div className="hero-video-scrim-top absolute inset-0" />
+      <div className="hero-video-scrim-bottom absolute inset-0" />
+      <div className="hero-video-scrim-content absolute inset-0" />
+      <div className="hero-video-scrim-stats absolute inset-0 hidden lg:block" />
     </div>
   )
 }

@@ -137,6 +137,26 @@
   --radius-lg-4: 24px;
   --radius-full: 9999px;
 
+  /*
+   * Nested radius — inner = max(0, outer − inset)
+   * Set --radius-outer and --radius-inset on a frame; children use --radius-nested.
+   */
+  --radius-outer: var(--radius-md);
+  --radius-inset: 0px;
+  --radius-nested: max(0px, calc(var(--radius-outer) - var(--radius-inset)));
+
+  /* Precomputed pairs (outer token − spacing token) */
+  --radius-nested-lg-4-inset-4: max(0px, calc(var(--radius-lg-4) - var(--space-4)));
+  --radius-nested-lg-4-inset-8: max(0px, calc(var(--radius-lg-4) - var(--space-8)));
+  --radius-nested-lg-4-inset-12: max(0px, calc(var(--radius-lg-4) - var(--space-12)));
+  --radius-nested-lg-4-inset-24: max(0px, calc(var(--radius-lg-4) - var(--space-24)));
+  --radius-nested-lg-4-inset-32: max(0px, calc(var(--radius-lg-4) - var(--space-32)));
+  --radius-nested-lg-5-inset-4: max(0px, calc(var(--radius-lg-5) - var(--space-4)));
+  --radius-nested-lg-5-inset-8: max(0px, calc(var(--radius-lg-5) - var(--space-8)));
+  --radius-nested-lg-5-inset-12: max(0px, calc(var(--radius-lg-5) - var(--space-12)));
+  --radius-nested-lg-6-inset-4: max(0px, calc(var(--radius-lg-6) - var(--space-4)));
+  --radius-nested-lg-6-inset-8: max(0px, calc(var(--radius-lg-6) - var(--space-8)));
+
   /* Shadows — multi-layer from Slate DS */
   --shadow-100: 0px 1px 2px 0px rgba(0, 0, 0, 0.05), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
   --shadow-200: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 3px 6px 0px rgba(0, 0, 0, 0.04),
@@ -150,11 +170,71 @@
   --drop-shadow-200: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.06))
     drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.04)) drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.03));
 
+  /* Hero video — targeted scrims + text halos for contrast without global dimming */
+  --hero-scrim-top: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.38) 0%,
+    rgba(0, 0, 0, 0.1) 32%,
+    transparent 58%
+  );
+  --hero-scrim-bottom: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.12) 24%,
+    transparent 48%
+  );
+  --hero-scrim-content: radial-gradient(
+    ellipse 100% 85% at 0% 100%,
+    rgba(0, 0, 0, 0.68) 0%,
+    rgba(0, 0, 0, 0.22) 42%,
+    transparent 68%
+  );
+  --hero-scrim-stats: radial-gradient(
+    ellipse 75% 65% at 100% 100%,
+    rgba(0, 0, 0, 0.52) 0%,
+    rgba(0, 0, 0, 0.14) 38%,
+    transparent 62%
+  );
+  --hero-text-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.92),
+    0 2px 6px rgba(0, 0, 0, 0.72),
+    0 6px 20px rgba(0, 0, 0, 0.48);
+  --hero-text-shadow-sm:
+    0 1px 2px rgba(0, 0, 0, 0.9),
+    0 3px 10px rgba(0, 0, 0, 0.62);
+
+  /* Glass — progressive blur surfaces (nav + page accents) */
+  --glass-blur-subtle: blur(8px) saturate(140%);
+  --glass-blur: blur(16px) saturate(140%);
+  --glass-blur-strong: blur(18px) saturate(140%);
+
+  --glass-subtle-bg: rgba(255, 255, 255, 0.52);
+  --glass-subtle-border: rgba(0, 0, 0, 0.06);
+  --glass-subtle-fallback: rgba(247, 247, 248, 0.96);
+
+  --glass-medium-bg: rgba(255, 255, 255, 0.58);
+  --glass-medium-border: rgba(255, 255, 255, 0.42);
+  --glass-medium-fallback: rgba(255, 255, 255, 0.94);
+
+  --glass-dark-bg: rgba(12, 12, 18, 0.38);
+  --glass-dark-border: rgba(255, 255, 255, 0.14);
+  --glass-dark-fallback: rgba(12, 12, 18, 0.88);
+
+  --glass-nav-idle-bg: rgba(255, 255, 255, 0.28);
+  --glass-nav-idle-dark-bg: rgba(12, 12, 18, 0.22);
+  --glass-nav-scrolled-bg: rgba(255, 255, 255, 0.72);
+  --glass-nav-scrolled-dark-bg: rgba(12, 12, 18, 0.52);
+
+  --glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --glass-shadow-float: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --glass-shadow-dark: 0 1px 2px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.1);
+
   /* Motion */
   --motion-duration-fast: 150ms;
   --motion-duration-normal: 300ms;
   --motion-duration-slow: 500ms;
   --motion-duration-nav: 220ms;
+  --motion-duration-glass: 220ms;
   --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --motion-ease-nav: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -229,6 +309,17 @@
   --radius-lg-5: var(--radius-lg-5);
   --radius-lg-4: var(--radius-lg-4);
   --radius-full: var(--radius-full);
+  --radius-nested: var(--radius-nested);
+  --radius-nested-lg-4-inset-4: var(--radius-nested-lg-4-inset-4);
+  --radius-nested-lg-4-inset-8: var(--radius-nested-lg-4-inset-8);
+  --radius-nested-lg-4-inset-12: var(--radius-nested-lg-4-inset-12);
+  --radius-nested-lg-4-inset-24: var(--radius-nested-lg-4-inset-24);
+  --radius-nested-lg-4-inset-32: var(--radius-nested-lg-4-inset-32);
+  --radius-nested-lg-5-inset-4: var(--radius-nested-lg-5-inset-4);
+  --radius-nested-lg-5-inset-8: var(--radius-nested-lg-5-inset-8);
+  --radius-nested-lg-5-inset-12: var(--radius-nested-lg-5-inset-12);
+  --radius-nested-lg-6-inset-4: var(--radius-nested-lg-6-inset-4);
+  --radius-nested-lg-6-inset-8: var(--radius-nested-lg-6-inset-8);
 
   /* Spacing */
   --spacing-4: var(--space-4);

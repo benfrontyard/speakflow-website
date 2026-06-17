@@ -65,7 +65,7 @@ function StepVisualFrame({
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-lg-5 bg-background shadow-300 ${stepVisualAspectClass} ${className}`}
+      className={`relative w-full overflow-hidden radius-inset bg-background ${stepVisualAspectClass} ${className}`}
     >
       {howItWorks.steps.map((step, index) => (
         <StepMedia
@@ -162,7 +162,9 @@ export function HowItWorks() {
 
             <Col span={4} spanMd={8} spanLg={7} className="hidden lg:block">
               <div className={`sticky ${stickyTopClass}`}>
-                <StepVisual activeStep={activeStep} />
+                <div className="glass-base glass-medium glass-border glass-shadow radius-frame-lg-5 radius-inset-8 p-8">
+                  <StepVisual activeStep={activeStep} />
+                </div>
               </div>
             </Col>
           </Grid>

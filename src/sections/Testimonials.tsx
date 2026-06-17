@@ -12,10 +12,10 @@ const { testimonials } = content
 function PlayButton() {
   return (
     <span
-      className="flex size-40 shrink-0 items-center justify-center rounded-full bg-white/95 shadow-200"
+      className="glass-base glass-dark glass-border flex size-40 shrink-0 items-center justify-center rounded-full"
       aria-hidden="true"
     >
-      <PlayIcon aria-hidden="true" size={12} weight="fill" className="text-text-primary" />
+      <PlayIcon aria-hidden="true" size={12} weight="fill" className="text-accent-alt" />
     </span>
   )
 }
@@ -47,14 +47,16 @@ function FeaturedStoryCard({
 
       <div className="absolute bottom-24 left-24 flex items-center gap-16">
         <PlayButton />
-        <img
-          src={logo.src}
-          alt={logo.alt}
-          className="size-40 shrink-0 rounded-md bg-white object-contain p-6"
-        />
-        <div>
-          <p className="text-body-sm font-semibold text-white">{name}</p>
-          <p className="text-caption text-white/70">{role}</p>
+        <div className="glass-base glass-dark glass-border flex items-center gap-12 rounded-lg-6 px-12 py-8">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            className="size-40 shrink-0 rounded-md bg-white object-contain p-6"
+          />
+          <div>
+            <p className="text-body-sm font-semibold text-accent-alt">{name}</p>
+            <p className="text-caption text-accent-alt/70">{role}</p>
+          </div>
         </div>
       </div>
     </a>
@@ -71,7 +73,7 @@ function QuoteCard({
   logo: { src: string; alt: string }
 }) {
   return (
-    <blockquote className="flex h-full min-h-[220px] flex-col justify-between gap-32 rounded-lg-4 bg-accent-alt p-32 shadow-200">
+    <blockquote className="glass-base glass-subtle glass-border glass-shadow flex h-full min-h-[220px] flex-col justify-between gap-32 rounded-lg-4 p-32">
       <p className="text-body-lg text-text-primary">&ldquo;{quote}&rdquo;</p>
       <footer className="flex items-center gap-12">
         <img

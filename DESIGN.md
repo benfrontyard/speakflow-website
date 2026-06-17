@@ -1248,6 +1248,49 @@ _⚠ marks values that fall off the 4px grid (1px used 2486×, 2px used 24×, 6p
 | `radius-lg-2` | 40px | 24 |
 | `radius-full` | 9999px | 95 |
 
+### Nested Border Radius
+
+When an inner element sits inside a padded or inset rounded container, compute its radius so corner curves stay visually parallel:
+
+**Formula:** `inner = max(0, outer − inset)`
+
+| Outer | Inset | Inner |
+|-------|-------|-------|
+| 24px (`radius-lg-4`) | 8px | 16px (`radius-lg-5`) |
+| 20px | 6px | 14px |
+| 16px (`radius-lg-5`) | 4px | 12px (`radius-lg-6`) |
+| 12px (`radius-lg-6`) | 4px | 8px (`radius-md`) |
+
+**Rules**
+- Do not reuse the outer radius on inset children — inner should usually be smaller.
+- If the formula yields a value below 0, use 0.
+- If the inner element touches the outer edge with no inset, it may share the same radius.
+- Pill buttons keep `radius-full` (9999px).
+- Avoid overly rounded corners on tiny elements.
+
+**CSS usage**
+
+```html
+<!-- Frame + dynamic child (recommended) -->
+<div class="radius-frame-lg-5 radius-inset-8 p-8">
+  <div class="radius-inset">…</div>
+</div>
+
+<!-- Precomputed token -->
+<div class="rounded-nested-lg-5-inset-8">…</div>
+```
+
+**TypeScript**
+
+```ts
+import { nestedRadius, nestedRadiusFromTokens } from './lib/radius'
+
+nestedRadius(24, 8) // 16
+nestedRadiusFromTokens('lg-5', 8) // 8
+```
+
+**Applies to:** cards with images, modal inset panels, product UI previews, buttons inside rounded containers, nested glass surfaces, media frames inside section wrappers.
+
 ## 6. Depth & Motion
 
 ### Elevation
@@ -1454,6 +1497,7 @@ State tokens should be derived from the base palette above. Recommended mappings
 - Use `#222222` (`text-primary`) for primary text
 - Use `#111111` (`accent`) as the primary accent color
 - Keep border-radius consistent: 2px, 3px, 4px, 5px, 6px, 8px, 10px, 12px, 16px, 24px, 26px, 40px, 9999px
+- For nested rounded elements, use `inner = max(0, outer − inset)` — see Nested Border Radius
 - Use the spacing scale above for all padding and margins
 - Maintain the type scale hierarchy for visual rhythm
 

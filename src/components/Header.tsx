@@ -18,7 +18,7 @@ export function Header() {
   const isScrolled = useHeaderScrollState()
 
   const navToneClass = onDarkBackground
-    ? 'text-accent-alt/90 hover:text-accent-alt text-shadow-200'
+    ? 'text-accent-alt/92 hover:text-accent-alt text-shadow-hero-sm'
     : 'text-text-primary/90 hover:text-text-primary'
 
   return (
@@ -70,7 +70,7 @@ export function Header() {
                 </button>
 
                 <div
-                  className={`header-nav-dropdown absolute top-full left-0 w-56 rounded-lg-6 border border-border-alt/20 bg-accent-alt/95 p-8 shadow-400 backdrop-blur-md ${
+                  className={`header-nav-dropdown glass-base glass-medium glass-border glass-shadow absolute top-full left-0 w-56 rounded-lg-6 p-8 ${
                     resourcesOpen ? 'is-open' : ''
                   }`}
                   inert={resourcesOpen ? undefined : true}

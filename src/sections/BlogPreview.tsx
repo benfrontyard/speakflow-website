@@ -25,15 +25,15 @@ function BlogCard({
   image: (typeof blogPreview.posts)[number]['image']
 }) {
   return (
-    <article className="group flex flex-col">
+    <article className="glass-base glass-subtle glass-border glass-shadow group flex flex-col overflow-hidden rounded-lg-4">
       <a href={href} className="flex flex-col gap-16">
         <MediaAsset
           source={image}
           aspectRatio="aspect-video"
           objectFit="cover"
-          className="rounded-lg-4 bg-surface-alt shadow-200 transition-shadow duration-150 group-hover-shadow"
+          className="rounded-none bg-surface-alt shadow-none transition-transform duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover-scale-subtle"
         />
-        <div className="flex flex-col gap-8 px-4">
+        <div className="flex flex-col gap-8 px-20 pb-20">
           <div className="flex flex-wrap items-center gap-8">
             <Pill variant="subtle" size="sm" uppercase>
               {category}
