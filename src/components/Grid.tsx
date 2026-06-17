@@ -75,6 +75,7 @@ export function Grid({ children, className = '' }: GridProps) {
 
 export function Col({ children, className = '', span, spanMd, spanLg }: ColProps) {
   const classes = [
+    'min-w-0',
     span ? colSpan[span] : 'col-span-4 md:col-span-8 lg:col-span-12',
     spanMd ? colSpanMd[spanMd] : '',
     spanLg ? colSpanLg[spanLg] : '',

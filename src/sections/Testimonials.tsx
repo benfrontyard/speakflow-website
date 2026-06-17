@@ -24,15 +24,20 @@ function FeaturedStoryCard({
   name,
   role,
   video,
-  logo,
   href,
 }: {
   name: string
   role: string
   video: string
-  logo: { src: string; alt: string }
   href: string
 }) {
+  const initials = name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('')
+
   return (
     <a
       href={href}
@@ -43,16 +48,21 @@ function FeaturedStoryCard({
         aspectRatio="aspect-[16/10]"
         className="rounded-lg-4 shadow-300 transition-transform duration-300 group-hover-scale-subtle"
       />
-      <div className="pointer-events-none absolute inset-0 rounded-lg-4 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      <div className="pointer-events-none absolute inset-0 rounded-lg-4 bg-gradient-to-t from-[#0A1930]/78 via-[#1F4CE033] to-[#59E8FF1F]" />
+      <div className="pointer-events-none absolute inset-0 rounded-lg-4 bg-[radial-gradient(120%_70%_at_12%_100%,rgba(61,135,255,0.44),transparent_58%),radial-gradient(90%_66%_at_100%_100%,rgba(90,239,255,0.32),transparent_52%)]" />
 
       <div className="absolute bottom-24 left-24 flex items-center gap-16">
         <PlayButton />
-        <div className="glass-base glass-dark glass-border flex items-center gap-12 rounded-lg-6 px-12 py-8">
-          <img
-            src={logo.src}
-            alt={logo.alt}
-            className="size-40 shrink-0 rounded-md bg-white object-contain p-6"
-          />
+        <div className="glass-base glass-dark glass-border flex items-center gap-12 rounded-lg-6 px-12 py-8 backdrop-blur-md">
+          <div
+            className="relative flex size-40 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/35 bg-[linear-gradient(135deg,#ffffff_0%,#edf4ff_37%,#d3e9ff_100%)] shadow-[0_8px_22px_rgba(10,25,48,0.26)]"
+            aria-label={`${name} logo`}
+          >
+            <span className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(39,99,255,0.26),transparent_60%),radial-gradient(circle_at_80%_88%,rgba(57,208,255,0.24),transparent_56%)]" />
+            <span className="relative text-[11px] font-semibold tracking-[0.08em] text-[#0E2B66]">
+              {initials}
+            </span>
+          </div>
           <div>
             <p className="text-body-sm font-semibold text-accent-alt">{name}</p>
             <p className="text-caption text-accent-alt/70">{role}</p>
@@ -129,7 +139,6 @@ export function Testimonials() {
                   name={story.name}
                   role={story.role}
                   video={story.video}
-                  logo={story.logo}
                   href={story.href}
                 />
               </Reveal>

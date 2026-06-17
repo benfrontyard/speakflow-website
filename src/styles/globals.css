@@ -6,12 +6,20 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* clip avoids the scroll-container side effect of hidden, which breaks position: sticky */
+    overflow-x: clip;
   }
 
   body {
     @apply bg-background text-text-primary font-body antialiased;
     font-size: var(--text-body-size);
     line-height: var(--text-body-line);
+    overflow-x: clip;
+  }
+
+  #root,
+  main {
+    overflow-x: clip;
   }
 
   [id] {
