@@ -1,0 +1,198 @@
+/* Slate DS design tokens — source: DESIGN.md design-tokens JSON */
+
+:root {
+  /* Colors */
+  --color-accent: #111111;
+  --color-accent-alt: #ffffff;
+  --color-accent-5: #fb2f57;
+  --color-accent-14: #c11554;
+  --color-accent-20: #ef4591;
+  --color-text-primary: #222222;
+  --color-text-secondary: #404040;
+  --color-text-secondary-alt: #828387;
+  --color-text-tertiary: #71717a;
+  --color-background: #f2f2f3;
+  --color-surface: #eeeeee;
+  --color-surface-alt: #f7f7f8;
+  --color-border: #ababab;
+  --color-border-alt: #a1a1aa;
+  --color-danger: #dc2626;
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+
+  /* Typography — font families (marketing site uses Geist throughout) */
+  --font-display: "Geist", sans-serif;
+  --font-body: "Geist", sans-serif;
+
+  /* Typography — display & headings */
+  --text-display-size: 3.5rem;
+  --text-display-line: 4rem;
+  --text-display-weight: 700;
+  --text-display-tracking: -0.04em;
+
+  --text-h1-size: 3rem;
+  --text-h1-line: 3.5rem;
+  --text-h1-weight: 700;
+  --text-h1-tracking: -0.03em;
+
+  --text-h2-size: 2.5rem;
+  --text-h2-line: 3rem;
+  --text-h2-weight: 700;
+  --text-h2-tracking: -0.03em;
+
+  --text-h3-size: 2.25rem;
+  --text-h3-line: 2.6875rem;
+  --text-h3-weight: 600;
+  --text-h3-tracking: -0.02em;
+
+  --text-h4-size: 2rem;
+  --text-h4-line: 2.5rem;
+  --text-h4-weight: 700;
+  --text-h4-tracking: -0.02em;
+
+  --text-h6-size: 1.5rem;
+  --text-h6-line: 2rem;
+  --text-h6-weight: 700;
+  --text-h6-tracking: -0.01em;
+
+  --text-body-lg-size: 1.125rem;
+  --text-body-lg-line: 1.75rem;
+
+  --text-body-size: 1rem;
+  --text-body-line: 1.5rem;
+
+  --text-body-sm-size: 0.875rem;
+  --text-body-sm-line: 1.25rem;
+
+  --text-caption-size: 0.75rem;
+  --text-caption-line: 1rem;
+
+  /* Spacing (4px grid) */
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-20: 1.25rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-40: 2.5rem;
+  --space-48: 3rem;
+  --space-80: 5rem;
+  --space-128: 8rem;
+
+  /* Border radius */
+  --radius-sm-5: 2px;
+  --radius-sm-4: 3px;
+  --radius-sm-3: 4px;
+  --radius-md: 8px;
+  --radius-lg-6: 12px;
+  --radius-lg-5: 16px;
+  --radius-lg-4: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows — multi-layer from Slate DS */
+  --shadow-100: 0px 1px 2px 0px rgba(0, 0, 0, 0.05), 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  --shadow-200: 0px 1px 2px 0px rgba(0, 0, 0, 0.06), 0px 3px 6px 0px rgba(0, 0, 0, 0.04),
+    0px 5px 10px 0px rgba(0, 0, 0, 0.03);
+  --shadow-300: 0px 2px 4px 0px rgba(0, 0, 0, 0.07), 0px 5px 10px 0px rgba(0, 0, 0, 0.05),
+    0px 9px 18px 0px rgba(0, 0, 0, 0.03);
+  --shadow-400: 0px 2px 4px 0px rgba(0, 0, 0, 0.08), 0px 5px 10px 0px rgba(0, 0, 0, 0.06),
+    0px 10px 20px 0px rgba(0, 0, 0, 0.04), 0px 18px 36px 0px rgba(0, 0, 0, 0.03);
+  --shadow-500: 0px 3px 6px 0px rgba(0, 0, 0, 0.09), 0px 7px 14px 0px rgba(0, 0, 0, 0.07),
+    0px 16px 28px 0px rgba(0, 0, 0, 0.05), 0px 28px 50px 0px rgba(0, 0, 0, 0.03);
+
+  /* Motion */
+  --motion-duration-fast: 150ms;
+  --motion-duration-normal: 300ms;
+  --motion-duration-slow: 500ms;
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Breakpoints (reference) */
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1440px;
+
+  /* Grid — Slate DS (Mobile 4 / Tablet 8 / Desktop 12 columns) */
+  --grid-max-width: 1440px;
+  --grid-columns-mobile: 4;
+  --grid-columns-tablet: 8;
+  --grid-columns-desktop: 12;
+  --grid-gutter: var(--space-24);
+  --grid-margin-mobile: var(--space-20);
+  --grid-margin-tablet: var(--space-32);
+  --grid-margin-desktop: var(--space-40);
+}
+
+@theme {
+  /* Colors */
+  --color-accent: var(--color-accent);
+  --color-accent-alt: var(--color-accent-alt);
+  --color-accent-5: var(--color-accent-5);
+  --color-accent-14: var(--color-accent-14);
+  --color-accent-20: var(--color-accent-20);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-secondary-alt: var(--color-text-secondary-alt);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
+  --color-border-alt: var(--color-border-alt);
+  --color-danger: var(--color-danger);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+
+  /* Font families */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  /* Font sizes */
+  --text-display: var(--text-display-size);
+  --text-h1: var(--text-h1-size);
+  --text-h2: var(--text-h2-size);
+  --text-h3: var(--text-h3-size);
+  --text-h4: var(--text-h4-size);
+  --text-h6: var(--text-h6-size);
+  --text-body-lg: var(--text-body-lg-size);
+  --text-body: var(--text-body-size);
+  --text-body-sm: var(--text-body-sm-size);
+  --text-caption: var(--text-caption-size);
+
+  /* Shadows */
+  --shadow-100: var(--shadow-100);
+  --shadow-200: var(--shadow-200);
+  --shadow-300: var(--shadow-300);
+  --shadow-400: var(--shadow-400);
+  --shadow-500: var(--shadow-500);
+
+  /* Radius */
+  --radius-sm-5: var(--radius-sm-5);
+  --radius-sm-4: var(--radius-sm-4);
+  --radius-sm-3: var(--radius-sm-3);
+  --radius-md: var(--radius-md);
+  --radius-lg-6: var(--radius-lg-6);
+  --radius-lg-5: var(--radius-lg-5);
+  --radius-lg-4: var(--radius-lg-4);
+  --radius-full: var(--radius-full);
+
+  /* Spacing */
+  --spacing-4: var(--space-4);
+  --spacing-8: var(--space-8);
+  --spacing-12: var(--space-12);
+  --spacing-16: var(--space-16);
+  --spacing-20: var(--space-20);
+  --spacing-24: var(--space-24);
+  --spacing-32: var(--space-32);
+  --spacing-40: var(--space-40);
+  --spacing-48: var(--space-48);
+  --spacing-80: var(--space-80);
+  --spacing-128: var(--space-128);
+
+  /* Breakpoints */
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1440px;
+
+  /* Grid */
+  --grid-max-width: var(--grid-max-width);
+  --grid-gutter: var(--grid-gutter);
+}
