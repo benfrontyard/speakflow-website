@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Header } from './components/Header'
 import { SectionFallback } from './components/SectionFallback'
+import { BackgroundDecoration, decorationPresets } from './decorations'
 import { Hero } from './sections/Hero'
 import { ScriptSection } from './sections/ScriptSection'
 import { Testimonials } from './sections/Testimonials'
@@ -24,18 +25,23 @@ function App() {
     <main>
       <Header />
       <Hero />
-      <ScriptSection />
-      <UsedBy />
-      <Testimonials />
-      <Suspense fallback={<SectionFallback />}>
-        <HowItWorks />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <Workflow />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <BlogPreview />
-      </Suspense>
+      <div className="relative">
+        <BackgroundDecoration scene={decorationPresets.marketingFlow} />
+        <div className="relative z-10">
+          <ScriptSection />
+          <UsedBy />
+          <Testimonials />
+          <Suspense fallback={<SectionFallback />}>
+            <HowItWorks />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <Workflow />
+          </Suspense>
+          <Suspense fallback={<SectionFallback />}>
+            <BlogPreview />
+          </Suspense>
+        </div>
+      </div>
       <Suspense fallback={<SectionFallback />}>
         <ClosingSection />
       </Suspense>

@@ -12,11 +12,6 @@ import { useActiveStep } from '../hooks/useActiveStep'
 
 const { howItWorks } = content
 
-const dotBackgroundStyle = {
-  backgroundImage: 'url(/images/marketing/dot-grid.svg)',
-  backgroundSize: '48px 48px',
-} as const
-
 const stepVisualAspectClass = 'aspect-[16/9]'
 
 const motionEase = [0.22, 1, 0.36, 1] as const
@@ -303,13 +298,7 @@ export function HowItWorks() {
   const { activeStep, containerRef } = useActiveStep({ stepCount })
 
   return (
-    <Section id="how-it-works" className="relative bg-background py-0 max-lg:py-[var(--space-section)]">
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.12]"
-        aria-hidden="true"
-        style={dotBackgroundStyle}
-      />
-
+    <Section id="how-it-works" className="relative bg-background/80 py-0 max-lg:py-[var(--space-section)]">
       <Container className="relative">
         <DesktopStickySteps
           activeStep={activeStep}

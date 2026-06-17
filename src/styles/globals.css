@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./tokens.css";
 @import "./animations.css";
+@import "./patterns.css";
 
 @layer base {
   html {
@@ -337,47 +338,37 @@
     }
   }
 
-  .closing-gradient-blob {
+  /* Decoration — config-driven background layers */
+  .decoration-layer {
+    pointer-events: none;
+    position: absolute;
+  }
+
+  .decoration-blob {
+    background: var(--sf-blob-fill);
+    filter: blur(var(--sf-blob-blur));
+    opacity: var(--sf-blob-opacity);
+    border-radius: var(--radius-full);
     will-change: transform;
   }
 
-  .closing-gradient-blob-primary {
-    left: 50%;
-    top: 38%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-accent-5) 72%, transparent) 0%,
-      transparent 68%
-    );
-    opacity: 0.62;
-    animation: closing-gradient-drift-primary 24s ease-in-out infinite alternate;
+  .decoration-blob--center {
+    transform: translate(-50%, -50%);
   }
 
-  .closing-gradient-blob-secondary {
-    left: 62%;
-    top: 48%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-button-primary-gradient-start) 55%, transparent) 0%,
-      transparent 70%
-    );
-    opacity: 0.42;
-    animation: closing-gradient-drift-secondary 28s ease-in-out infinite alternate;
+  .decoration-blob[data-motion='drift-a'] {
+    animation: decoration-drift-a var(--decoration-motion-drift-a) ease-in-out infinite alternate;
   }
 
-  .closing-gradient-blob-tertiary {
-    left: 32%;
-    top: 42%;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--color-accent-20) 60%, transparent) 0%,
-      transparent 72%
-    );
-    opacity: 0.48;
-    animation: closing-gradient-drift-tertiary 22s ease-in-out infinite alternate;
+  .decoration-blob[data-motion='drift-b'] {
+    animation: decoration-drift-b var(--decoration-motion-drift-b) ease-in-out infinite alternate;
   }
 
-  @keyframes closing-gradient-drift-primary {
+  .decoration-blob[data-motion='drift-c'] {
+    animation: decoration-drift-c var(--decoration-motion-drift-c) ease-in-out infinite alternate;
+  }
+
+  @keyframes decoration-drift-a {
     from {
       transform: translate(calc(-50% - 7%), calc(-50% - 5%));
     }
@@ -386,7 +377,7 @@
     }
   }
 
-  @keyframes closing-gradient-drift-secondary {
+  @keyframes decoration-drift-b {
     from {
       transform: translate(calc(-50% + 5%), calc(-50% - 4%));
     }
@@ -395,7 +386,7 @@
     }
   }
 
-  @keyframes closing-gradient-drift-tertiary {
+  @keyframes decoration-drift-c {
     from {
       transform: translate(calc(-50% - 5%), calc(-50% + 3%));
     }
@@ -405,11 +396,46 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .closing-gradient-blob {
+    .decoration-blob {
       will-change: auto;
       animation: none;
+    }
+
+    .decoration-blob--center {
       transform: translate(-50%, -50%);
     }
+  }
+
+  .decoration-dot-pattern {
+    background-repeat: repeat;
+  }
+
+  .decoration-linear-fade {
+    background: var(--sf-fade-gradient);
+  }
+
+  .decoration-linear-fade--top {
+    inset-inline: 0;
+    top: 0;
+    height: var(--sf-fade-size);
+  }
+
+  .decoration-linear-fade--bottom {
+    inset-inline: 0;
+    bottom: 0;
+    height: var(--sf-fade-size);
+  }
+
+  .decoration-linear-fade--left {
+    inset-block: 0;
+    left: 0;
+    width: var(--sf-fade-size);
+  }
+
+  .decoration-linear-fade--right {
+    inset-block: 0;
+    right: 0;
+    width: var(--sf-fade-size);
   }
 
   /* Glass surfaces — reusable accent language */

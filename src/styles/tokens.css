@@ -256,6 +256,26 @@
   --grid-columns-desktop: 12;
   --grid-gutter: var(--space-24);
   --grid-margin: var(--space-24);
+
+  /* Decoration — background primitives (maps to Figma Decoration/* layers) */
+  --decoration-blur-sm: 72px;
+  --decoration-blur-md: 80px;
+  --decoration-blur-lg: 88px;
+  --decoration-dot-tile-48: 48px;
+  --decoration-dot-opacity-default: 0.12;
+  --decoration-motion-drift-a: 24s;
+  --decoration-motion-drift-b: 28s;
+  --decoration-motion-drift-c: 22s;
+
+  /* Dot pattern — Speakflow defaults (3px dot, 18px gap) */
+  --dot-size: 3px;
+  --dot-gap: 18px;
+  --dot-opacity: 0.14;
+  --dot-color-neutral: color-mix(in srgb, var(--color-text-tertiary) 48%, transparent);
+  --dot-color-brand: color-mix(in srgb, var(--color-accent-5) 38%, transparent);
+  --dot-gradient-from: var(--color-button-primary-gradient-start);
+  --dot-gradient-to: var(--color-accent-20);
+  --dot-fade-direction: none;
 }
 
 @theme {

@@ -1,0 +1,48 @@
+/* Dot pattern system — CSS/SVG backgrounds (no image assets) */
+
+@layer components {
+  .dot-pattern {
+    pointer-events: none;
+    background-repeat: repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .dot-pattern--gradient-grid {
+    background-blend-mode: soft-light, normal;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dot-pattern--animated {
+      animation: none;
+    }
+  }
+
+  .dot-pattern--animated {
+    animation: dot-pattern-drift 28s ease-in-out infinite alternate;
+  }
+
+  @keyframes dot-pattern-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 2px 3px, 4px 2px;
+    }
+  }
+
+  /* Decoration layer integration */
+  .dot-pattern--full {
+    inset: 0;
+  }
+
+  .dot-pattern--center {
+    transform: translate(-50%, -50%);
+  }
+
+  .decoration-dot-pattern {
+    background-repeat: repeat;
+  }
+}

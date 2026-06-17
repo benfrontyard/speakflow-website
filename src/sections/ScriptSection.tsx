@@ -9,19 +9,9 @@ import { content } from '../data/content'
 
 const { scriptSection } = content
 
-const dotBackgroundStyle = {
-  backgroundImage: 'url(/images/marketing/dot-grid.svg)',
-  backgroundSize: '48px 48px',
-} as const
-
 export function ScriptSection() {
   return (
     <Section id="create-script" className="relative">
-      <div
-        className="pointer-events-none absolute inset-0 overflow-hidden opacity-[0.1]"
-        aria-hidden="true"
-        style={dotBackgroundStyle}
-      />
       <Container className="relative">
         <Grid className="gap-section">
           <Col span={4} spanMd={8} spanLg={8} className="lg:col-start-3">
