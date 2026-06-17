@@ -222,6 +222,43 @@ export const content = {
       },
     ],
   },
+  faq: {
+    pill: 'FAQ',
+    title: 'Common questions',
+    subtitle: 'Everything you need to know before your first recording.',
+    items: [
+      {
+        question: 'Do I need to memorize my script?',
+        answer:
+          'No. Speakflow is built so you can read naturally. Flow follows your voice as you speak, so you stay present instead of chasing the scroll or memorizing every word.',
+      },
+      {
+        question: 'Does Speakflow work in my browser?',
+        answer:
+          'Yes. Speakflow runs in modern browsers — write your script, open the teleprompter, and record without installing anything. Desktop apps are also available if you prefer a native experience.',
+      },
+      {
+        question: 'Can my team collaborate on scripts?',
+        answer:
+          'Yes. Invite teammates to write, edit, and organize scripts in a shared workspace so everyone records from the same version.',
+      },
+      {
+        question: 'What devices does Speakflow support?',
+        answer:
+          'Speakflow works on laptop, tablet, and phone. With Remote, you can control one screen from another — scroll your tablet from your phone, or run multiple displays from your computer.',
+      },
+      {
+        question: 'Is there a free plan?',
+        answer:
+          'Yes. You can try Speakflow free to write scripts, use the teleprompter, and record. Paid plans add team features, advanced controls, and more storage as you scale.',
+      },
+      {
+        question: 'How does voice-following work?',
+        answer:
+          'Flow listens to your voice and advances the script as you speak. If you pause or go off-script, it waits for you — so you can take your time and deliver at your own pace.',
+      },
+    ],
+  },
   blogPreview: {
     pill: 'From the blog',
     title: 'Guides for better recordings',

@@ -16,6 +16,7 @@ const Workflow = lazy(() =>
 const BlogPreview = lazy(() =>
   import('./sections/BlogPreview').then((module) => ({ default: module.BlogPreview })),
 )
+const FAQ = lazy(() => import('./sections/FAQ').then((module) => ({ default: module.FAQ })))
 const ClosingSection = lazy(() =>
   import('./sections/ClosingSection').then((module) => ({ default: module.ClosingSection })),
 )
@@ -28,14 +29,17 @@ function App() {
       <div className="relative">
         <BackgroundDecoration scene={decorationPresets.marketingFlow} />
         <div className="relative z-10">
-          <ScriptSection />
           <UsedBy />
-          <Testimonials />
           <Suspense fallback={<SectionFallback />}>
             <HowItWorks />
           </Suspense>
+          <ScriptSection />
           <Suspense fallback={<SectionFallback />}>
             <Workflow />
+          </Suspense>
+          <Testimonials />
+          <Suspense fallback={<SectionFallback />}>
+            <FAQ />
           </Suspense>
           <Suspense fallback={<SectionFallback />}>
             <BlogPreview />
