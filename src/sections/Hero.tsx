@@ -2,10 +2,25 @@ import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { HeroVideoBackground } from '../components/HeroVideoBackground'
+import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { content } from '../data/content'
 
 const { hero } = content
+
+function CheckIcon() {
+  return (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+      <path
+        d="M8.5 2.5L4 7L1.5 4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 export function Hero() {
   return (
@@ -16,6 +31,9 @@ export function Hero() {
         <Grid className="items-end">
           <Col span={4} spanMd={6} spanLg={7}>
             <Reveal className="flex flex-col items-start gap-24 text-left">
+              <Pill variant="brand" size="sm" icon={<CheckIcon />}>
+                {hero.pill}
+              </Pill>
               <h1 className="text-h1 text-accent-alt md:text-display">
                 {hero.headline.map((line) => (
                   <span key={line} className="block">
@@ -24,6 +42,13 @@ export function Hero() {
                 ))}
               </h1>
               <p className="max-w-xl text-body-lg text-accent-alt/85">{hero.subhead}</p>
+              <div className="flex flex-wrap gap-10">
+                {hero.highlights.map((label) => (
+                  <Pill key={label} variant="subtle" size="sm" tone="on-dark">
+                    {label}
+                  </Pill>
+                ))}
+              </div>
               <Button size="lg">{hero.primaryCta}</Button>
             </Reveal>
           </Col>

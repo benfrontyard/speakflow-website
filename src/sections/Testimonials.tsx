@@ -1,6 +1,7 @@
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
+import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { content } from '../data/content'
@@ -99,6 +100,9 @@ export function Testimonials() {
             <Reveal>
               <div className="flex flex-col gap-24 lg:flex-row lg:items-end lg:justify-between">
                 <div>
+                  <Pill variant="subtle" uppercase className="mb-16">
+                    {testimonials.pill}
+                  </Pill>
                   <h2 className="text-h2">
                     {testimonials.title.map((line) => (
                       <span key={line} className="block">

@@ -1,6 +1,7 @@
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
+import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { content } from '../data/content'
@@ -26,6 +27,9 @@ export function CTA() {
                 />
 
                 <div className="relative flex flex-col items-center gap-24">
+                  <Pill variant="brand" uppercase>
+                    {cta.pill}
+                  </Pill>
                   <h2 className="text-h2">{cta.headline}</h2>
                   <p className="text-body-lg text-text-secondary-alt">{cta.body}</p>
                   <Button size="lg">{cta.ctaLabel}</Button>

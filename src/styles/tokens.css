@@ -20,6 +20,35 @@
   --color-success: #16a34a;
   --color-warning: #f59e0b;
 
+  /* Pills */
+  --color-pill-default-bg: linear-gradient(180deg, #333333 0%, #111111 100%);
+  --color-pill-default-text: #ffffff;
+  --color-pill-brand-bg: linear-gradient(
+    128deg,
+    var(--color-button-primary-gradient-start) 0%,
+    var(--color-accent-5) 52%,
+    var(--color-accent-20) 100%
+  );
+  --color-pill-brand-text: #ffffff;
+  --color-pill-subtle-bg: linear-gradient(180deg, #ffffff 0%, #f0f0f2 100%);
+  --color-pill-subtle-text: #404040;
+  --color-pill-subtle-border: rgba(17, 17, 17, 0.08);
+  --color-pill-glass-bg: linear-gradient(
+    128deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 162, 0, 0.14) 45%,
+    rgba(251, 47, 87, 0.18) 100%
+  );
+  --color-pill-glass-border: rgba(255, 255, 255, 0.28);
+  --color-pill-glass-text: #ffffff;
+  --color-pill-brand-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(251, 47, 87, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --color-pill-default-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  --color-pill-subtle-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --color-pill-glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --sf-pill-bg: var(--color-pill-default-bg);
+  --sf-pill-text: var(--color-pill-default-text);
+
   /* Buttons — Speakflow primary gradient */
   --color-button-primary: #f7006a;
   --color-button-primary-gradient-start: #ffa200;

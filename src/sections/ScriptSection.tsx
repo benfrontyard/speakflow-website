@@ -2,6 +2,7 @@ import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
+import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { content } from '../data/content'
@@ -15,6 +16,9 @@ export function ScriptSection() {
         <Grid className="gap-section">
           <Col span={4} spanMd={8} spanLg={8} className="lg:col-start-3">
             <Reveal className="flex flex-col items-center gap-24 text-center">
+              <Pill variant="brand" uppercase>
+                {scriptSection.pill}
+              </Pill>
               <h2 className="text-h2">
                 {scriptSection.headline.map((line) => (
                   <span key={line} className="block">

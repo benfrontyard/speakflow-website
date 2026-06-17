@@ -196,6 +196,67 @@
     line-height: var(--text-body-line);
   }
 
+  .pill-base {
+    @apply inline-flex w-fit max-w-full items-center whitespace-nowrap font-semibold;
+    border-radius: var(--radius-full);
+    background: var(--sf-pill-bg);
+    color: var(--sf-pill-text);
+    line-height: 1.3;
+    box-shadow: var(--sf-pill-shadow, none);
+    border: var(--sf-pill-border, none);
+    backdrop-filter: var(--sf-pill-backdrop, none);
+    -webkit-backdrop-filter: var(--sf-pill-backdrop, none);
+  }
+
+  .pill-default {
+    --sf-pill-bg: var(--color-pill-default-bg);
+    --sf-pill-text: var(--color-pill-default-text);
+    --sf-pill-shadow: var(--color-pill-default-shadow);
+  }
+
+  .pill-brand {
+    --sf-pill-bg: var(--color-pill-brand-bg);
+    --sf-pill-text: var(--color-pill-brand-text);
+    --sf-pill-shadow: var(--color-pill-brand-shadow);
+  }
+
+  .pill-subtle {
+    --sf-pill-bg: var(--color-pill-subtle-bg);
+    --sf-pill-text: var(--color-pill-subtle-text);
+    --sf-pill-border: 1px solid var(--color-pill-subtle-border);
+    --sf-pill-shadow: var(--color-pill-subtle-shadow);
+  }
+
+  .pill-on-dark {
+    --sf-pill-bg: var(--color-pill-glass-bg);
+    --sf-pill-text: var(--color-pill-glass-text);
+    --sf-pill-border: 1px solid var(--color-pill-glass-border);
+    --sf-pill-shadow: var(--color-pill-glass-shadow);
+    --sf-pill-backdrop: blur(10px);
+  }
+
+  .pill-sm {
+    gap: 0.375rem;
+    padding: 0.3125rem 0.75rem;
+    font-size: 0.6875rem;
+  }
+
+  .pill-md {
+    gap: 0.4375rem;
+    padding: 0.4375rem 0.9375rem;
+    font-size: 0.75rem;
+  }
+
+  .pill-uppercase {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .pill-icon {
+    @apply inline-flex shrink-0 items-center;
+    font-size: 0.875em;
+  }
+
   .gap-section {
     row-gap: var(--space-section-gap);
   }

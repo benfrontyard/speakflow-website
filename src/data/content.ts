@@ -30,12 +30,15 @@ export const content = {
     ctaHref: '#',
   },
   hero: {
+    pill: 'Voice-Controlled',
+    highlights: ['Browser-based', 'Multi-device', 'Team-ready'],
     headline: ['The teleprompter', 'that follows your voice'],
     subhead:
       'Reduce your production time, deliver better presentations, and record videos in your browser with Speakflow.',
     primaryCta: 'Sign Up',
   },
   scriptSection: {
+    pill: 'Write & Record',
     headline: ['Create your next video', 'without memorizing a word.'],
     description:
       "Write or paste your script, then use Speakflow's teleprompter directly in your browser.",
@@ -59,52 +62,43 @@ export const content = {
     ],
   },
   howItWorks: {
-    eyebrow: 'HOW IT WORKS',
+    eyebrow: 'How it works',
     title: 'Nail the take without memorizing every word',
     intro:
       'Speakflow helps you write, rehearse, collaborate, and record from the setup you already use.',
     steps: [
       {
         number: '01',
+        pill: 'Flow',
         title: 'Read naturally with Flow',
         copy: 'Say goodbye to umms and ahhhs. Flow follows your voice as you speak, so you can stay present instead of chasing the script.',
         primaryCta: 'Try Flow free',
         primaryCtaHref: '#',
         secondaryCta: 'See how it works',
         secondaryCtaHref: '#',
-        media: {
-          type: 'image',
-          src: '/images/how-it-works/step-01-flow.png',
-          alt: 'Creator recording with Speakflow Flow voice-controlled teleprompter',
-        },
+        media: media.manageWorkflow,
       },
       {
         number: '02',
+        pill: 'Teams',
         title: 'Collaborate on every script',
         copy: 'Invite your team to write, edit, organize, and keep track of scripts together before recording starts.',
         primaryCta: 'Create a workspace',
         primaryCtaHref: '#',
         secondaryCta: 'View team features',
         secondaryCtaHref: '#',
-        media: {
-          type: 'image',
-          src: '/images/how-it-works/step-02-collaborate.png',
-          alt: 'Speakflow team collaboration and comment interface',
-        },
+        media: media.manageWorkflow,
       },
       {
         number: '03',
+        pill: 'Remote',
         title: 'Control your setup from anywhere',
         copy: 'Scroll your tablet from your phone, your phone from your computer, or run multiple screens with Remote.',
         primaryCta: 'Start recording',
         primaryCtaHref: '#',
         secondaryCta: 'Learn about Remote',
         secondaryCtaHref: '#',
-        media: {
-          type: 'image',
-          src: '/images/how-it-works/step-03-remote.png',
-          alt: 'Speakflow Remote syncing teleprompter across multiple screens',
-        },
+        media: media.runOnOneScreen,
       },
     ],
   },
@@ -137,6 +131,7 @@ export const content = {
     ],
   },
   testimonials: {
+    pill: 'Customer Stories',
     title: ['Built with the creators', "leading what's next"],
     subtitle: 'Real videos. Real scale. Real outcomes.',
     viewAll: 'View Customer Stories',
@@ -226,6 +221,7 @@ export const content = {
     ],
   },
   cta: {
+    pill: 'Free to start',
     headline: 'Speak clearly. Finish strong.',
     body: "From first draft to final take, everything stays in sync so you can focus on what you're saying.",
     ctaLabel: 'Try Speakflow Free',

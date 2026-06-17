@@ -2,6 +2,8 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
+import { MediaAsset } from '../components/MediaAsset'
+import { Pill } from '../components/Pill'
 import { Section } from '../components/Section'
 import { content } from '../data/content'
 import { useActiveStep } from '../hooks/useActiveStep'
@@ -13,12 +15,11 @@ const dotBackgroundStyle = {
   backgroundSize: '48px 48px',
 } as const
 
-// Source art is 706x387 — slightly wider than 16:9, so aspect-video letterboxes top/bottom.
 const stepVisualAspectClass = 'aspect-[706/387]'
 
 const stickyTopClass = 'top-[calc(var(--space-32)+var(--space-32)+2rem)]'
 
-function StepImage({
+function StepMedia({
   step,
   isActive,
   prefersReducedMotion,
@@ -27,16 +28,10 @@ function StepImage({
   isActive: boolean
   prefersReducedMotion: boolean | null
 }) {
-  if (step.media.type !== 'image') return null
-
   return (
-    <motion.img
-      src={step.media.src}
-      alt={step.media.alt ?? step.title}
-      className="absolute inset-0 h-full w-full rounded-lg-5 object-cover"
+    <motion.div
+      className="absolute inset-0"
       aria-hidden={!isActive}
-      loading={step.number === '01' ? 'eager' : 'lazy'}
-      decoding="async"
       style={{ zIndex: isActive ? 1 : 0 }}
       initial={false}
       animate={{ opacity: isActive ? 1 : 0 }}
@@ -44,7 +39,15 @@ function StepImage({
         duration: prefersReducedMotion ? 0.15 : 0.45,
         ease: [0.16, 1, 0.3, 1],
       }}
-    />
+    >
+      <MediaAsset
+        source={step.media}
+        aspectRatio={stepVisualAspectClass}
+        objectFit="contain"
+        className="h-full rounded-lg-5 bg-background shadow-none"
+        label={step.title}
+      />
+    </motion.div>
   )
 }
 
@@ -62,7 +65,7 @@ function StepVisualFrame({
       className={`relative w-full overflow-hidden rounded-lg-5 bg-background shadow-300 ${stepVisualAspectClass} ${className}`}
     >
       {howItWorks.steps.map((step, index) => (
-        <StepImage
+        <StepMedia
           key={step.number}
           step={step}
           isActive={activeStep === index}
@@ -98,9 +101,9 @@ export function HowItWorks() {
 
       <Container className="relative">
         <header className="mb-40 flex max-w-[34rem] flex-col gap-16 lg:mb-48 lg:pt-8">
-          <p className="text-body-sm font-medium uppercase tracking-widest text-text-secondary-alt">
+          <Pill variant="subtle" uppercase>
             {howItWorks.eyebrow}
-          </p>
+          </Pill>
           <h2 className="text-h2">{howItWorks.title}</h2>
           <p className="text-body-lg text-text-secondary-alt">{howItWorks.intro}</p>
         </header>
@@ -121,9 +124,14 @@ export function HowItWorks() {
                       }`}
                     >
                       <div className="flex max-w-[34rem] flex-col gap-16">
-                        <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-secondary-alt">
-                          {step.number}
-                        </p>
+                        <div className="flex flex-wrap items-center gap-12">
+                          <Pill variant="brand" size="sm" uppercase>
+                            {step.pill}
+                          </Pill>
+                          <p className="text-caption font-medium uppercase tracking-[0.12em] text-text-secondary-alt">
+                            {step.number}
+                          </p>
+                        </div>
                         <h3 className="text-h3">{step.title}</h3>
                         <p className="text-body-lg text-text-secondary-alt">{step.copy}</p>
                         <div className="flex flex-wrap gap-12 pt-8">
@@ -134,19 +142,15 @@ export function HowItWorks() {
                         </div>
                       </div>
 
-                      {step.media.type === 'image' ? (
-                        <div className="lg:hidden">
-                          <div
-                            className={`relative w-full overflow-hidden rounded-lg-5 bg-background shadow-200 ${stepVisualAspectClass}`}
-                          >
-                            <img
-                              src={step.media.src}
-                              alt={step.media.alt ?? step.title}
-                              className="h-full w-full rounded-lg-5 object-cover"
-                            />
-                          </div>
-                        </div>
-                      ) : null}
+                      <div className="lg:hidden">
+                        <MediaAsset
+                          source={step.media}
+                          aspectRatio={stepVisualAspectClass}
+                          objectFit="contain"
+                          className="rounded-lg-5 bg-background shadow-200"
+                          label={step.title}
+                        />
+                      </div>
                     </article>
                   )
                 })}

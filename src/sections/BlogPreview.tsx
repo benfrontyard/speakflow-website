@@ -2,17 +2,24 @@ import type { ReactNode } from 'react'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
+import { Pill } from '../components/Pill'
 import { Reveal } from '../components/Reveal'
 import { Section } from '../components/Section'
 import { content } from '../data/content'
 
 const { blogPreview } = content
 
-function BlogTag({ children }: { children: ReactNode }) {
+function BlogTag({
+  children,
+  variant = 'subtle',
+}: {
+  children: ReactNode
+  variant?: 'default' | 'brand' | 'subtle'
+}) {
   return (
-    <span className="inline-flex items-center rounded-full border border-text-primary px-12 py-6 text-caption font-medium uppercase tracking-[0.04em] text-text-primary">
+    <Pill variant={variant} size="sm" uppercase>
       {children}
-    </span>
+    </Pill>
   )
 }
 
@@ -64,7 +71,7 @@ function BlogCard({
   return (
     <article className="group flex flex-col">
       <div className="mb-16 flex flex-wrap items-center gap-8">
-        <BlogTag>{category}</BlogTag>
+        <BlogTag variant="brand">{category}</BlogTag>
         <BlogTag>{date}</BlogTag>
       </div>
 
