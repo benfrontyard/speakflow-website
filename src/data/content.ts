@@ -1,17 +1,18 @@
 import type { MediaAssetSource } from '../components/MediaAsset'
+import { assetUrl } from '../lib/assetUrl'
 
 export const media = {
   runOnOneScreen: {
     type: 'lottie',
-    src: '/media/Run-on-one-screen-control-from-another.json',
+    src: assetUrl('/media/Run-on-one-screen-control-from-another.json'),
   },
   manageWorkflow: {
     type: 'lottie',
-    src: '/media/Manage-your-workflow.json',
+    src: assetUrl('/media/Manage-your-workflow.json'),
   },
   createVideo: {
     type: 'video',
-    src: '/media/purchaser_16x9.mp4',
+    src: assetUrl('/media/purchaser_16x9.mp4'),
   },
 } satisfies Record<string, MediaAssetSource>
 
@@ -54,7 +55,7 @@ export const content = {
       'Write or paste your script, then use Speakflow\u2019s teleprompter directly in your browser.',
     cta: 'Try Speakflow',
     media: media.createVideo,
-    demoVideo: '/images/testimonials/andrew-johnson.mp4',
+    demoVideo: assetUrl('/images/testimonials/andrew-johnson.mp4'),
     demoScript: [
       'Hello everyone,',
       '',
@@ -82,17 +83,17 @@ export const content = {
   usedBy: {
     title: 'Used by nice folks at',
     logos: [
-      { name: 'UCLA', src: '/images/logos/ucla.png' },
-      { name: 'Logitech', src: '/images/logos/logitech.png' },
-      { name: 'LinkedIn', src: '/images/logos/linkedin.png' },
-      { name: 'Google', src: '/images/logos/google.png' },
-      { name: 'Apple', src: '/images/logos/apple.png' },
-      { name: 'Facebook', src: '/images/logos/facebook.png' },
-      { name: 'Marvel', src: '/images/logos/marvel.png' },
-      { name: 'ESPN', src: '/images/logos/espn.png' },
-      { name: 'Shopify', src: '/images/logos/shopify.png' },
-      { name: 'HubSpot', src: '/images/logos/hubspot.png' },
-      { name: 'Stanford', src: '/images/logos/stanford.png' },
+      { name: 'UCLA', src: assetUrl('/images/logos/ucla.png') },
+      { name: 'Logitech', src: assetUrl('/images/logos/logitech.png') },
+      { name: 'LinkedIn', src: assetUrl('/images/logos/linkedin.png') },
+      { name: 'Google', src: assetUrl('/images/logos/google.png') },
+      { name: 'Apple', src: assetUrl('/images/logos/apple.png') },
+      { name: 'Facebook', src: assetUrl('/images/logos/facebook.png') },
+      { name: 'Marvel', src: assetUrl('/images/logos/marvel.png') },
+      { name: 'ESPN', src: assetUrl('/images/logos/espn.png') },
+      { name: 'Shopify', src: assetUrl('/images/logos/shopify.png') },
+      { name: 'HubSpot', src: assetUrl('/images/logos/hubspot.png') },
+      { name: 'Stanford', src: assetUrl('/images/logos/stanford.png') },
     ],
   },
   howItWorks: {
@@ -184,15 +185,15 @@ export const content = {
       {
         name: 'Andrew Johnson',
         role: 'Founder, No Walls Studio',
-        video: '/images/testimonials/andrew-johnson.mp4',
-        logo: { src: '/images/testimonials/nws.svg', alt: 'No Walls Studio' },
+        video: assetUrl('/images/testimonials/andrew-johnson.mp4'),
+        logo: { src: assetUrl('/images/testimonials/nws.svg'), alt: 'No Walls Studio' },
         href: '#',
       },
       {
         name: 'Rasmus Kalms',
         role: 'CPO, Anthill',
-        video: '/images/testimonials/rasmus-kalms.mp4',
-        logo: { src: '/images/testimonials/anthill.svg', alt: 'Anthill' },
+        video: assetUrl('/images/testimonials/rasmus-kalms.mp4'),
+        logo: { src: assetUrl('/images/testimonials/anthill.svg'), alt: 'Anthill' },
         href: '#',
       },
     ],
@@ -201,23 +202,23 @@ export const content = {
         quote:
           'Speakflow helped us deliver polished presentations without memorizing a single line.',
         company: 'Logitech',
-        logo: { src: '/images/logos/logitech.png', alt: 'Logitech' },
+        logo: { src: assetUrl('/images/logos/logitech.png'), alt: 'Logitech' },
       },
       {
         quote: 'Speakflow is a partner that accelerates our content production.',
         company: 'ESPN',
-        logo: { src: '/images/logos/espn.png', alt: 'ESPN' },
+        logo: { src: assetUrl('/images/logos/espn.png'), alt: 'ESPN' },
       },
       {
         quote:
           'Speakflow\u2019s platform offers the flexibility, scalability, and ease we needed.',
         company: 'Google',
-        logo: { src: '/images/logos/google.png', alt: 'Google' },
+        logo: { src: assetUrl('/images/logos/google.png'), alt: 'Google' },
       },
       {
         quote: 'With Speakflow, we are able to reliably expand our video offerings.',
         company: 'LinkedIn',
-        logo: { src: '/images/logos/linkedin.png', alt: 'LinkedIn' },
+        logo: { src: assetUrl('/images/logos/linkedin.png'), alt: 'LinkedIn' },
       },
     ],
   },
@@ -237,7 +238,7 @@ export const content = {
         href: '#',
         image: {
           type: 'image',
-          src: '/images/blog/speakflow-guide.png',
+          src: assetUrl('/images/blog/speakflow-guide.png'),
           alt: 'Phone and tablet running Speakflow in sync',
         },
       },
@@ -250,7 +251,7 @@ export const content = {
         href: '#',
         image: {
           type: 'image',
-          src: '/images/blog/follow-your-voice.png',
+          src: assetUrl('/images/blog/follow-your-voice.png'),
           alt: 'Creator using Speakflow Flow voice-controlled teleprompter',
         },
       },
@@ -263,7 +264,7 @@ export const content = {
         href: '#',
         image: {
           type: 'image',
-          src: '/images/blog/customize-your-teleprompter.png',
+          src: assetUrl('/images/blog/customize-your-teleprompter.png'),
           alt: 'Speakflow teleprompter customization settings',
         },
       },
@@ -276,15 +277,15 @@ export const content = {
     ctaHref: '#',
     illustrations: {
       prompter: {
-        src: '/images/cta/prompter.png',
+        src: assetUrl('/images/cta/prompter.png'),
         alt: 'Illustration of a teleprompter on a tripod with a creator waving',
       },
       mic: {
-        src: '/images/cta/mic.png',
+        src: assetUrl('/images/cta/mic.png'),
         alt: 'Illustration of a creator sitting on a studio microphone',
       },
       laptop: {
-        src: '/images/cta/laptop.png',
+        src: assetUrl('/images/cta/laptop.png'),
         alt: 'Illustration of a laptop running Speakflow with a creator holding a folder',
       },
     },

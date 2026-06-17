@@ -10,6 +10,7 @@ import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Col, Grid } from '../components/Grid'
 import { content } from '../data/content'
+import { assetUrl } from '../lib/assetUrl'
 
 const { footer } = content
 
@@ -56,7 +57,7 @@ function FooterLinks() {
       <Col span={4} spanMd={8} spanLg={3}>
         <a href="#" className="inline-flex shrink-0">
           <img
-            src="/speakflow-logo.svg"
+            src={assetUrl('/speakflow-logo.svg')}
             alt="Speakflow"
             className="h-40 w-40 rounded-lg-5 opacity-35"
             width={40}
@@ -94,7 +95,7 @@ function FooterUtilityBar() {
       <div className="flex flex-wrap items-center gap-16">
         <a href="#" className="inline-flex shrink-0">
           <img
-            src="/speakflow-wordmark-light.svg"
+            src={assetUrl('/speakflow-wordmark-light.svg')}
             alt="Speakflow"
             className="h-24 w-auto opacity-90"
             width={140}

@@ -4,6 +4,7 @@ import { Button } from './Button'
 import { Container } from './Container'
 import { Col, Grid } from './Grid'
 import { content } from '../data/content'
+import { assetUrl } from '../lib/assetUrl'
 import { useHeaderOnDarkBackground } from '../hooks/useHeaderOnDarkBackground'
 import { useHeaderScrollState } from '../hooks/useHeaderScrollState'
 
@@ -32,7 +33,7 @@ export function Header() {
           <Col span={2} spanLg={2}>
             <a href="#" className="inline-flex shrink-0">
               <img
-                src={onDarkBackground ? '/speakflow-wordmark-light.svg' : '/speakflow-wordmark-dark.svg'}
+                src={onDarkBackground ? assetUrl('/speakflow-wordmark-light.svg') : assetUrl('/speakflow-wordmark-dark.svg')}
                 alt="Speakflow"
                 className={`h-32 w-auto transition-[filter,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   onDarkBackground ? 'drop-shadow-200' : ''

@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { content } from '../data/content'
+import { assetUrl } from '../lib/assetUrl'
 
 const { cta } = content
 
@@ -98,7 +99,7 @@ export function CTA() {
               }}
             >
               <img
-                src="/speakflow-logo.svg"
+                src={assetUrl('/speakflow-logo.svg')}
                 alt=""
                 aria-hidden="true"
                 className="h-40 w-40 shrink-0 rounded-lg-5"
