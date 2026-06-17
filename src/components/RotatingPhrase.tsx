@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react'
 type RotatingPhraseProps = {
   phrases: readonly string[]
   interval?: number
+  duration?: number
   className?: string
 }
 
 export function RotatingPhrase({
   phrases,
-  interval = 3500,
+  interval = 2800,
+  duration = 0.5,
   className = '',
 }: RotatingPhraseProps) {
   const [index, setIndex] = useState(0)
@@ -49,7 +51,7 @@ export function RotatingPhrase({
           initial={{ opacity: 0, y: '0.2em' }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: '-0.2em' }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
         >
           {phrases[index]}

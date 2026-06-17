@@ -35,7 +35,15 @@ export const content = {
     ctaHref: '#',
   },
   hero: {
-    headline: ['The teleprompter', 'that follows your voice'],
+    headline: {
+      static: 'The teleprompter that',
+      rotating: [
+        'follows your voice',
+        'keeps you on script',
+        'scrolls as you speak',
+        'helps you nail the take',
+      ],
+    },
     subhead:
       'Reduce your production time, deliver better presentations, and record videos in your browser with Speakflow.',
     stats: [
@@ -132,7 +140,7 @@ export const content = {
         primaryCtaHref: '#',
         secondaryCta: 'View team features',
         secondaryCtaHref: '#',
-        media: media.manageWorkflow,
+        demo: 'teams-collaborate',
       },
       {
         number: '03',

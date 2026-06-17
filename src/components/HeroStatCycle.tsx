@@ -1,5 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { HeroIntroItem } from './HeroIntro'
+import { HeroStatValue } from './HeroStatValue'
 
 type HeroStat = {
   label: string
@@ -30,19 +32,27 @@ export function HeroStatCycle({ stats, interval = 4000, className = '' }: HeroSt
 
   if (!stat) return null
 
+  const statContent = (
+    <>
+      <p className="text-h4 tabular-nums text-accent-alt text-shadow-hero">
+        <HeroStatValue value={stat.value} />
+      </p>
+      <p className="mt-4 text-[0.6875rem] font-medium tracking-[0.04em] text-accent-alt/72 uppercase text-shadow-hero-sm">
+        {stat.label}
+      </p>
+    </>
+  )
+
   if (prefersReducedMotion || stats.length <= 1) {
     return (
-      <div className={className}>
-        <p className="text-h4 tabular-nums text-accent-alt text-shadow-hero">{stat.value}</p>
-        <p className="mt-4 text-[0.6875rem] font-medium tracking-[0.04em] text-accent-alt/72 uppercase text-shadow-hero-sm">
-          {stat.label}
-        </p>
-      </div>
+      <HeroIntroItem step="stats" className={className}>
+        {statContent}
+      </HeroIntroItem>
     )
   }
 
   return (
-    <div className={`relative min-h-[3.25rem] ${className}`}>
+    <HeroIntroItem step="stats" className={`relative min-h-[3.25rem] ${className}`}>
       <span className="sr-only" aria-live="polite">
         {stat.value} {stat.label}
       </span>
@@ -55,12 +65,9 @@ export function HeroStatCycle({ stats, interval = 4000, className = '' }: HeroSt
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           aria-hidden="true"
         >
-          <p className="text-h4 tabular-nums text-accent-alt text-shadow-hero">{stat.value}</p>
-          <p className="mt-4 text-[0.6875rem] font-medium tracking-[0.04em] text-accent-alt/72 uppercase text-shadow-hero-sm">
-            {stat.label}
-          </p>
+          {statContent}
         </motion.div>
       </AnimatePresence>
-    </div>
+    </HeroIntroItem>
   )
 }

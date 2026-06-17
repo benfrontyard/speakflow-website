@@ -75,6 +75,63 @@
   animation: shimmer 1.4s ease-in-out infinite;
 }
 
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-marquee {
+  animation: logo-marquee var(--logo-marquee-duration, 48s) linear infinite;
+}
+
+.logo-marquee:hover .animate-logo-marquee {
+  animation-play-state: paused;
+}
+
+.logo-marquee {
+  --logo-marquee-gap: 1.625rem;
+  --logo-marquee-height: 3rem;
+  --logo-marquee-max-width: 9.5rem;
+}
+
+@media (min-width: 640px) {
+  .logo-marquee {
+    --logo-marquee-gap: 2rem;
+    --logo-marquee-height: 4.25rem;
+    --logo-marquee-max-width: 11.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .logo-marquee {
+    --logo-marquee-gap: 2.5rem;
+    --logo-marquee-height: 5.25rem;
+    --logo-marquee-max-width: 12.25rem;
+  }
+}
+
+.logo-marquee-track {
+  gap: var(--logo-marquee-gap);
+}
+
+.logo-marquee img {
+  display: block;
+  height: var(--logo-marquee-height);
+  width: auto;
+  max-width: var(--logo-marquee-max-width);
+  object-fit: contain;
+  filter: saturate(0);
+}
+
+.logo-marquee--static {
+  row-gap: 2.5rem;
+  column-gap: var(--logo-marquee-gap);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -93,6 +150,10 @@
   }
 
   .animate-shimmer {
+    animation: none;
+  }
+
+  .animate-logo-marquee {
     animation: none;
   }
 }

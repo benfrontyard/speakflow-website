@@ -1,5 +1,10 @@
+import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
+import { content } from '../data/content'
+import { HERO_INTRO_STAT_STAGGER, useHeroIntro } from './HeroIntro'
 import { Shimmer } from './Shimmer'
+
+const { hero } = content
 
 const YOUTUBE_VIDEO_ID = 'bS8WKg9ndKA'
 
@@ -20,6 +25,11 @@ const embedParams = new URLSearchParams({
 })
 
 export function HeroVideoBackground() {
+  const { animate, getTransition } = useHeroIntro()
+  const productVisualTransition = getTransition(
+    'stats',
+    hero.stats.length * HERO_INTRO_STAT_STAGGER + 0.03,
+  )
   const [shouldLoad, setShouldLoad] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -35,8 +45,8 @@ export function HeroVideoBackground() {
     return () => clearTimeout(timeoutId)
   }, [])
 
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden bg-black" aria-hidden="true">
+  const background = (
+    <>
       {!isLoaded ? <Shimmer variant="dark" className="absolute inset-0" /> : null}
       {shouldLoad ? (
         <iframe
@@ -50,11 +60,30 @@ export function HeroVideoBackground() {
           onLoad={() => setIsLoaded(true)}
         />
       ) : null}
-      {/* Targeted scrims — darken only where text sits, keep center/right bright */}
       <div className="hero-video-scrim-top absolute inset-0" />
       <div className="hero-video-scrim-bottom absolute inset-0" />
       <div className="hero-video-scrim-content absolute inset-0" />
       <div className="hero-video-scrim-stats absolute inset-0 hidden lg:block" />
-    </div>
+    </>
+  )
+
+  if (!animate) {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden bg-black" aria-hidden="true">
+        {background}
+      </div>
+    )
+  }
+
+  return (
+    <motion.div
+      className="pointer-events-none absolute inset-0 overflow-hidden bg-black"
+      aria-hidden="true"
+      initial={{ opacity: 0, y: 12, scale: 1.02 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={productVisualTransition}
+    >
+      {background}
+    </motion.div>
   )
 }

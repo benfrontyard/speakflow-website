@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import type { RefObject } from 'react'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
+import { CollaboratePreview } from '../components/CollaboratePreview'
 import { FlowTeleprompterPreview } from '../components/FlowTeleprompterPreview'
 import { Col, Grid } from '../components/Grid'
 import { MediaAsset } from '../components/MediaAsset'
@@ -24,6 +25,14 @@ type Step = (typeof howItWorks.steps)[number]
 
 function isFlowDemoStep(step: Step) {
   return 'demo' in step && step.demo === 'flow-teleprompter'
+}
+
+function isCollaborateDemoStep(step: Step) {
+  return 'demo' in step && step.demo === 'teams-collaborate'
+}
+
+function isInteractiveDemoStep(step: Step) {
+  return isFlowDemoStep(step) || isCollaborateDemoStep(step)
 }
 
 function useStepMotion() {
@@ -184,19 +193,20 @@ function StepMedia({
 }) {
   const { prefersReducedMotion, transition } = useStepMotion()
 
-  const visual =
-    isFlowDemoStep(step) ? (
-      <FlowTeleprompterPreview script={howItWorks.flowScript} active={isActive} />
-    ) : (
-      <MediaAsset
-        source={step.media}
-        aspectRatio={stepVisualAspectClass}
-        objectFit="contain"
-        className="h-full w-full rounded-lg-5 bg-background shadow-none"
-        label={step.title}
-        eager={isActive}
-      />
-    )
+  const visual = isCollaborateDemoStep(step) ? (
+    <CollaboratePreview active={isActive} />
+  ) : isFlowDemoStep(step) ? (
+    <FlowTeleprompterPreview script={howItWorks.flowScript} active={isActive} />
+  ) : (
+    <MediaAsset
+      source={step.media}
+      aspectRatio={stepVisualAspectClass}
+      objectFit="contain"
+      className="h-full w-full rounded-lg-5 bg-background shadow-none"
+      label={step.title}
+      eager={isActive}
+    />
+  )
 
   return (
     <motion.div
@@ -206,7 +216,7 @@ function StepMedia({
       initial={false}
       animate={{
         opacity: isActive ? 1 : 0,
-        y: isActive || prefersReducedMotion || isFlowDemoStep(step) ? 0 : 8,
+        y: isActive || prefersReducedMotion || isInteractiveDemoStep(step) ? 0 : 8,
         visibility: isActive ? 'visible' : 'hidden',
       }}
       transition={transition}
@@ -222,7 +232,9 @@ function StepVisualFrame({ activeStep }: { activeStep: number }) {
       className={`relative w-full overflow-hidden radius-inset ${stepVisualAspectClass} ${
         isFlowDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0])
           ? 'bg-black'
-          : 'bg-surface-alt/60'
+          : isCollaborateDemoStep(howItWorks.steps[activeStep] ?? howItWorks.steps[0])
+            ? 'bg-[#EDEDED]'
+            : 'bg-surface-alt/60'
       }`}
     >
       {howItWorks.steps.map((step, index) => (
@@ -308,7 +320,9 @@ function MobileSteps() {
             <StepFeatureCopy step={step} />
           </div>
 
-          {isFlowDemoStep(step) ? (
+          {isCollaborateDemoStep(step) ? (
+            <CollaboratePreview active />
+          ) : isFlowDemoStep(step) ? (
             <FlowTeleprompterPreview script={howItWorks.flowScript} active />
           ) : (
             <MediaAsset
