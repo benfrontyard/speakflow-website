@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const darkSections = ['hero', 'footer']
+const darkSections = ['hero', 'closing']
 
 export function useHeaderOnDarkBackground() {
   const [onDarkBackground, setOnDarkBackground] = useState(true)

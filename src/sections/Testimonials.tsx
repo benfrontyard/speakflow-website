@@ -41,7 +41,7 @@ function FeaturedStoryCard({
       <MediaAsset
         source={{ type: 'video', src: video }}
         aspectRatio="aspect-[16/10]"
-        className="rounded-lg-4 shadow-300 transition-transform duration-300 group-hover:scale-[1.01]"
+        className="rounded-lg-4 shadow-300 transition-transform duration-300 group-hover-scale-subtle"
       />
       <div className="pointer-events-none absolute inset-0 rounded-lg-4 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
@@ -111,7 +111,7 @@ export function Testimonials() {
                 </div>
                 <a
                   href={testimonials.viewAllHref}
-                  className="inline-flex shrink-0 items-center gap-4 text-body-sm font-medium text-text-primary transition-opacity duration-150 hover:opacity-70"
+                  className="inline-flex shrink-0 items-center gap-4 text-body-sm font-medium text-text-primary transition-opacity duration-150 hover-opacity-soft"
                 >
                   {testimonials.viewAll}
                   <ArrowRightIcon aria-hidden="true" className="size-12" />

@@ -1,6 +1,7 @@
 import { useReducedMotion } from 'motion/react'
 import { useLottie } from 'lottie-react'
 import { useEffect, useRef, useState } from 'react'
+import { Shimmer } from './Shimmer'
 
 export type MediaAssetSource =
   | { type: 'lottie'; src: string }
@@ -13,6 +14,7 @@ type MediaAssetProps = {
   objectFit?: 'cover' | 'contain'
   className?: string
   label?: string
+  eager?: boolean
 }
 
 function LottiePlayer({
@@ -49,13 +51,17 @@ export function MediaAsset({
   objectFit = 'cover',
   className = '',
   label,
+  eager = false,
 }: MediaAssetProps) {
   const prefersReducedMotion = useReducedMotion()
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(eager)
+  const [isLoaded, setIsLoaded] = useState(false)
   const [lottieData, setLottieData] = useState<object | null>(null)
 
   useEffect(() => {
+    if (eager) return
+
     const element = containerRef.current
     if (!element) return
 
@@ -68,7 +74,7 @@ export function MediaAsset({
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [])
+  }, [eager])
 
   useEffect(() => {
     if (source.type !== 'lottie' || !isVisible || lottieData) return
@@ -90,16 +96,28 @@ export function MediaAsset({
   }, [source, isVisible, lottieData])
 
   const wrapperClass = `${aspectRatio} relative isolate w-full overflow-hidden rounded-lg-4 bg-surface-alt ${className}`
+  const fitClass = objectFit === 'contain' ? 'object-contain' : 'object-cover'
+  const mediaReady =
+    source.type === 'lottie' ? Boolean(lottieData) : isLoaded
+  const showShimmer = !isVisible || !mediaReady
+  const fadeClass = mediaReady
+    ? 'opacity-100 transition-opacity duration-300 ease-out'
+    : 'opacity-0'
 
   if (source.type === 'image') {
     return (
       <div ref={containerRef} className={wrapperClass}>
-        <img
-          src={source.src}
-          alt={source.alt ?? label ?? ''}
-          className={`h-full w-full ${objectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
-          loading="lazy"
-        />
+        {showShimmer ? <Shimmer className="absolute inset-0" /> : null}
+        {isVisible ? (
+          <img
+            src={source.src}
+            alt={source.alt ?? label ?? ''}
+            className={`h-full w-full ${fitClass} ${fadeClass}`}
+            loading={eager ? 'eager' : 'lazy'}
+            fetchPriority={eager ? 'high' : undefined}
+            onLoad={() => setIsLoaded(true)}
+          />
+        ) : null}
       </div>
     )
   }
@@ -107,15 +125,18 @@ export function MediaAsset({
   if (source.type === 'video') {
     return (
       <div ref={containerRef} className={wrapperClass}>
+        {showShimmer ? <Shimmer className="absolute inset-0" /> : null}
         {isVisible ? (
           <video
             src={source.src}
             poster={source.poster}
-            className="h-full w-full object-cover"
+            className={`h-full w-full object-cover ${fadeClass}`}
             autoPlay={!prefersReducedMotion}
             loop
             muted
             playsInline
+            preload={eager ? 'auto' : 'metadata'}
+            onLoadedData={() => setIsLoaded(true)}
           />
         ) : null}
       </div>
@@ -124,7 +145,8 @@ export function MediaAsset({
 
   return (
     <div ref={containerRef} className={wrapperClass} aria-label={label}>
-      <div className="relative h-full w-full overflow-hidden">
+      {showShimmer ? <Shimmer className="absolute inset-0" /> : null}
+      <div className={`relative h-full w-full overflow-hidden ${fadeClass}`}>
         {isVisible && lottieData ? (
           <LottiePlayer
             animationData={lottieData}
@@ -132,11 +154,7 @@ export function MediaAsset({
             autoplay={!prefersReducedMotion}
             objectFit={objectFit}
           />
-        ) : (
-          <div className="flex h-full items-center justify-center text-body-sm text-text-secondary-alt">
-            {label ?? 'Loading…'}
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   )

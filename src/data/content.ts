@@ -51,7 +51,7 @@ export const content = {
     pill: 'Write & Record',
     headline: ['Create your next video', 'without memorizing a word.'],
     description:
-      "Write or paste your script, then use Speakflow's teleprompter directly in your browser.",
+      'Write or paste your script, then use Speakflow\u2019s teleprompter directly in your browser.',
     cta: 'Try Speakflow',
     media: media.createVideo,
   },
@@ -113,7 +113,7 @@ export const content = {
     ],
   },
   workflow: {
-    title: 'Your workflow. In Speakflow.',
+    title: 'Your workflow, in Speakflow.',
     description: 'Write, revise and organize your scripts and recordings.',
     cta: 'Try Speakflow Free',
     features: [
@@ -142,7 +142,7 @@ export const content = {
   },
   testimonials: {
     pill: 'Customer Stories',
-    title: ['Built with the creators', "leading what's next"],
+    title: ['Built with the creators', 'leading what\u2019s next'],
     subtitle: 'Real videos. Real scale. Real outcomes.',
     viewAll: 'View Customer Stories',
     viewAllHref: '#',
@@ -176,7 +176,7 @@ export const content = {
       },
       {
         quote:
-          "Speakflow's platform offers the flexibility, scalability, and ease we needed.",
+          'Speakflow\u2019s platform offers the flexibility, scalability, and ease we needed.',
         company: 'Google',
         logo: { src: '/images/logos/google.png', alt: 'Google' },
       },
@@ -188,39 +188,44 @@ export const content = {
     ],
   },
   blogPreview: {
-    title: 'Latest Insights',
-    viewAll: 'Explore Journal',
+    pill: 'From the blog',
+    title: 'Guides for better recordings',
+    subtitle: 'Tips, feature deep-dives, and setup guides from the Speakflow team.',
+    viewAll: 'View all posts',
     viewAllHref: '#',
     posts: [
       {
-        title: 'Speakflow guide',
+        title: 'Run Speakflow on any screen',
         category: 'Product',
         date: '18 FEB 2026',
-        excerpt: 'Run Speakflow on phone and tablet, synced and ready to record.',
+        excerpt:
+          'Start on your phone, control from your tablet — synced and ready when you hit record.',
         href: '#',
         image: {
           type: 'image',
           src: '/images/blog/speakflow-guide.png',
-          alt: 'Speakflow guide showing synced phone and tablet teleprompters',
+          alt: 'Phone and tablet running Speakflow in sync',
         },
       },
       {
-        title: 'Follow your voice',
+        title: 'Let the script follow you',
         category: 'Features',
         date: '17 FEB 2026',
-        excerpt: 'Voice-controlled scrolling that keeps up with your pacing.',
+        excerpt:
+          'Flow tracks your voice as you speak, so you stay present instead of chasing the scroll.',
         href: '#',
         image: {
           type: 'image',
           src: '/images/blog/follow-your-voice.png',
-          alt: 'Creator using Speakflow voice-controlled teleprompter',
+          alt: 'Creator using Speakflow Flow voice-controlled teleprompter',
         },
       },
       {
-        title: 'Customize your teleprompter',
+        title: 'Make the teleprompter feel like yours',
         category: 'Tips',
         date: '16 FEB 2026',
-        excerpt: 'Tune scrolling, typography, and layout to match how you deliver.',
+        excerpt:
+          'Adjust scroll speed, type size, and layout until delivering feels natural.',
         href: '#',
         image: {
           type: 'image',
@@ -231,41 +236,74 @@ export const content = {
     ],
   },
   cta: {
-    pill: 'Free to start',
     headline: 'Speak clearly. Finish strong.',
-    body: "From first draft to final take, everything stays in sync so you can focus on what you're saying.",
+    body: 'From first draft to final take, everything stays in sync so you can focus on what you\u2019re saying.',
     ctaLabel: 'Try Speakflow Free',
+    ctaHref: '#',
+    illustrations: {
+      prompter: {
+        src: '/images/cta/prompter.png',
+        alt: 'Illustration of a teleprompter on a tripod with a creator waving',
+      },
+      mic: {
+        src: '/images/cta/mic.png',
+        alt: 'Illustration of a creator sitting on a studio microphone',
+      },
+      laptop: {
+        src: '/images/cta/laptop.png',
+        alt: 'Illustration of a laptop running Speakflow with a creator holding a folder',
+      },
+    },
   },
   footer: {
+    promo: {
+      headline: 'Get started for free',
+      links: [
+        { label: 'Pricing', href: '#' },
+        { label: 'Compare plans', href: '#' },
+        { label: 'Watch demos', href: '#' },
+      ],
+      cta: { label: 'Try Speakflow Free', href: '#' },
+    },
     columns: [
       {
-        title: 'Speakflow',
+        title: 'Product',
         links: [
-          { label: 'Features', href: '#' },
+          { label: 'Home', href: '#' },
           { label: 'Pricing', href: '#' },
-          { label: 'Blog', href: '#' },
+          { label: 'Compare', href: '#' },
+          { label: 'Affiliate Program', href: '#' },
+          { label: 'Desktop App', href: '#' },
+        ],
+      },
+      {
+        title: 'Tools',
+        links: [
+          { label: 'Teleprompter', href: '#' },
+          { label: 'Webcam Recorder', href: '#' },
+          { label: 'Script Checker', href: '#' },
         ],
       },
       {
         title: 'Resources',
         links: [
-          { label: 'Help Center', href: '#' },
+          { label: 'Customer Support', href: '#' },
+          { label: 'Blog', href: '#' },
+          { label: 'Getting Started', href: '#' },
           { label: 'Documentation', href: '#' },
-          { label: 'Community', href: '#' },
-        ],
-      },
-      {
-        title: 'Company',
-        links: [
-          { label: 'About', href: '#' },
-          { label: 'Careers', href: '#' },
-          { label: 'Contact', href: '#' },
+          { label: 'API Docs', href: '#' },
         ],
       },
     ],
+    social: [
+      { label: 'Instagram', href: '#', icon: 'instagram' },
+      { label: 'X', href: '#', icon: 'x' },
+      { label: 'Facebook', href: '#', icon: 'facebook' },
+      { label: 'LinkedIn', href: '#', icon: 'linkedin' },
+    ],
     legal: [
       { label: 'Terms of Service', href: '#' },
-      { label: 'Privacy Policy', href: '#' },
+      { label: 'Privacy', href: '#' },
     ],
     copyright: '© 2026 Speakflow. All rights reserved.',
   },

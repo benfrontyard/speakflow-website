@@ -26,7 +26,7 @@ export function UsedBy() {
                   <img
                     src={logo.src}
                     alt={logo.name}
-                    className="h-24 w-auto max-w-[120px] object-contain opacity-60 grayscale transition-opacity duration-150 hover:opacity-80"
+                    className="h-24 w-auto max-w-[120px] object-contain opacity-60 grayscale transition-opacity duration-150 hover-opacity"
                     loading="lazy"
                   />
                 </Reveal>

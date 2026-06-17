@@ -39,12 +39,12 @@ function HeroLearnMore() {
   return (
     <a
       href={hero.learnMore.href}
-      className="group relative inline-flex h-[5.25rem] w-[8.75rem] flex-col justify-between border border-white/10 bg-white/8 p-16 backdrop-blur-sm transition-[background-color,border-color] duration-150 hover:border-white/16 hover:bg-white/12"
+      className="group hero-learn-more relative inline-flex h-[5.25rem] w-[8.75rem] flex-col justify-between border border-white/10 bg-white/8 p-16 backdrop-blur-sm transition-[background-color,border-color] duration-150"
     >
       <span className="text-body-sm text-accent-alt/88">{hero.learnMore.label}</span>
       <ArrowDownRightIcon
         aria-hidden="true"
-        className="absolute right-12 bottom-12 size-14 text-accent-alt/55 transition-[color,transform] duration-150 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:text-accent-alt/90"
+        className="hero-learn-more-icon absolute right-12 bottom-12 size-14 text-accent-alt/55 transition-[color,transform] duration-150"
       />
     </a>
   )
@@ -58,7 +58,7 @@ export function Hero() {
       <Container className="relative z-10 grid min-h-svh grid-rows-[1fr_auto] pt-[calc(var(--space-80)+var(--space-32))] pb-32 md:pt-[calc(var(--space-80)+var(--space-48))] md:pb-48">
         <div className="relative row-start-1 hidden min-h-0 lg:block">
           <aside className="absolute top-1/2 right-0 w-full max-w-[17.5rem] -translate-y-1/2 xl:max-w-[19rem]">
-            <Reveal delay={0.12}>
+            <Reveal intro delay={0.12}>
               <HeroStats />
             </Reveal>
           </aside>
@@ -66,7 +66,7 @@ export function Hero() {
 
         <Grid className="row-start-2 w-full items-end gap-y-32">
           <Col span={4} spanMd={6} spanLg={6}>
-            <Reveal>
+            <Reveal intro>
               <h1 className="text-h1 text-accent-alt text-shadow-200 md:text-display">
                 {hero.headline.map((line) => (
                   <span key={line} className="block">
@@ -86,13 +86,13 @@ export function Hero() {
             spanLg={3}
             className="flex justify-start md:col-start-7 md:justify-end lg:col-start-10"
           >
-            <Reveal delay={0.16}>
+            <Reveal intro delay={0.16}>
               <HeroLearnMore />
             </Reveal>
           </Col>
 
           <Col span={4} spanMd={8} spanLg={12} className="lg:hidden">
-            <Reveal delay={0.08}>
+            <Reveal intro delay={0.08}>
               <HeroStats />
             </Reveal>
           </Col>

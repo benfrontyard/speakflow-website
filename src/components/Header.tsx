@@ -9,7 +9,7 @@ import { useHeaderOnDarkBackground } from '../hooks/useHeaderOnDarkBackground'
 const { header } = content
 
 const navLinkClass =
-  'px-12 py-8 text-body-sm font-medium transition-colors duration-150'
+  'inline-flex min-h-11 items-center px-12 py-8 text-body-sm font-medium transition-colors duration-150'
 
 export function Header() {
   const [resourcesOpen, setResourcesOpen] = useState(false)

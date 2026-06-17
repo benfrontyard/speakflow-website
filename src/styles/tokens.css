@@ -62,35 +62,44 @@
   --font-display: "Geist", sans-serif;
   --font-body: "Geist", sans-serif;
 
-  /* Typography — display & headings */
-  --text-display-size: 3.5rem;
-  --text-display-line: 4rem;
-  --text-display-weight: 700;
+  /* Font weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Layout — fixed header offset for anchor scroll */
+  --scroll-margin-header: calc(var(--space-80) + var(--space-32));
+
+  /* Typography — display & headings (fluid scale on small screens) */
+  --text-display-size: clamp(2.25rem, calc(1.35rem + 4vw), 3.5rem);
+  --text-display-line: 1.14;
+  --text-display-weight: var(--font-weight-bold);
   --text-display-tracking: -0.04em;
 
-  --text-h1-size: 3rem;
-  --text-h1-line: 3.5rem;
-  --text-h1-weight: 700;
+  --text-h1-size: clamp(2rem, calc(1.2rem + 3.25vw), 3rem);
+  --text-h1-line: 1.17;
+  --text-h1-weight: var(--font-weight-bold);
   --text-h1-tracking: -0.03em;
 
-  --text-h2-size: 2.5rem;
-  --text-h2-line: 3rem;
-  --text-h2-weight: 700;
+  --text-h2-size: clamp(1.75rem, calc(1.1rem + 2.75vw), 2.5rem);
+  --text-h2-line: 1.2;
+  --text-h2-weight: var(--font-weight-bold);
   --text-h2-tracking: -0.03em;
 
-  --text-h3-size: 2.25rem;
-  --text-h3-line: 2.6875rem;
-  --text-h3-weight: 600;
+  --text-h3-size: clamp(1.5rem, calc(1.05rem + 2.25vw), 2.25rem);
+  --text-h3-line: 1.19;
+  --text-h3-weight: var(--font-weight-semibold);
   --text-h3-tracking: -0.02em;
 
   --text-h4-size: 2rem;
   --text-h4-line: 2.5rem;
-  --text-h4-weight: 700;
+  --text-h4-weight: var(--font-weight-bold);
   --text-h4-tracking: -0.02em;
 
   --text-h6-size: 1.5rem;
   --text-h6-line: 2rem;
-  --text-h6-weight: 700;
+  --text-h6-weight: var(--font-weight-bold);
   --text-h6-tracking: -0.01em;
 
   --text-body-lg-size: 1.125rem;

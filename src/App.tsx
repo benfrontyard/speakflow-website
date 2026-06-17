@@ -1,13 +1,23 @@
+import { lazy, Suspense } from 'react'
 import { Header } from './components/Header'
-import { BlogPreview } from './sections/BlogPreview'
-import { CTA } from './sections/CTA'
-import { Footer } from './sections/Footer'
+import { SectionFallback } from './components/SectionFallback'
 import { Hero } from './sections/Hero'
-import { HowItWorks } from './sections/HowItWorks'
 import { ScriptSection } from './sections/ScriptSection'
 import { Testimonials } from './sections/Testimonials'
 import { UsedBy } from './sections/UsedBy'
-import { Workflow } from './sections/Workflow'
+
+const HowItWorks = lazy(() =>
+  import('./sections/HowItWorks').then((module) => ({ default: module.HowItWorks })),
+)
+const Workflow = lazy(() =>
+  import('./sections/Workflow').then((module) => ({ default: module.Workflow })),
+)
+const BlogPreview = lazy(() =>
+  import('./sections/BlogPreview').then((module) => ({ default: module.BlogPreview })),
+)
+const ClosingSection = lazy(() =>
+  import('./sections/ClosingSection').then((module) => ({ default: module.ClosingSection })),
+)
 
 function App() {
   return (
@@ -17,11 +27,18 @@ function App() {
       <ScriptSection />
       <UsedBy />
       <Testimonials />
-      <HowItWorks />
-      <Workflow />
-      <BlogPreview />
-      <CTA />
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <HowItWorks />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Workflow />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <BlogPreview />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ClosingSection />
+      </Suspense>
     </main>
   )
 }

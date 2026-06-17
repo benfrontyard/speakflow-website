@@ -1,5 +1,7 @@
+import { Shimmer } from './Shimmer'
+
 type VisualPlaceholderProps = {
-  variant?: 'checkerboard' | 'surface'
+  variant?: 'checkerboard' | 'surface' | 'shimmer'
   aspectRatio?: string
   label?: string
   className?: string
@@ -11,6 +13,18 @@ export function VisualPlaceholder({
   label,
   className = '',
 }: VisualPlaceholderProps) {
+  if (variant === 'shimmer') {
+    return (
+      <div
+        className={`${aspectRatio} w-full ${className}`}
+        aria-hidden={!label}
+        aria-label={label}
+      >
+        <Shimmer className="h-full w-full rounded-lg-4" />
+      </div>
+    )
+  }
+
   return (
     <div
       className={`${aspectRatio} w-full overflow-hidden rounded-lg-4 ${
