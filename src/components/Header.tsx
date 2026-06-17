@@ -5,30 +5,36 @@ import { Container } from './Container'
 import { Col, Grid } from './Grid'
 import { content } from '../data/content'
 import { useHeaderOnDarkBackground } from '../hooks/useHeaderOnDarkBackground'
+import { useHeaderScrollState } from '../hooks/useHeaderScrollState'
 
 const { header } = content
 
 const navLinkClass =
-  'inline-flex min-h-11 items-center px-12 py-8 text-body-sm font-medium transition-colors duration-150'
+  'header-nav-link inline-flex min-h-11 items-center px-12 py-8 text-body-sm font-medium'
 
 export function Header() {
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const onDarkBackground = useHeaderOnDarkBackground()
+  const isScrolled = useHeaderScrollState()
 
   const navToneClass = onDarkBackground
     ? 'text-accent-alt/90 hover:text-accent-alt text-shadow-200'
     : 'text-text-primary/90 hover:text-text-primary'
 
   return (
-    <header className="fixed inset-x-0 top-0 z-20">
-      <Container>
+    <header
+      className="header-nav fixed inset-x-0 top-0 z-20"
+      data-scrolled={isScrolled ? 'true' : 'false'}
+      data-theme={onDarkBackground ? 'dark' : 'light'}
+    >
+      <Container className="relative">
         <Grid className="items-center py-32">
           <Col span={2} spanLg={2}>
             <a href="#" className="inline-flex shrink-0">
               <img
                 src={onDarkBackground ? '/speakflow-wordmark-light.svg' : '/speakflow-wordmark-dark.svg'}
                 alt="Speakflow"
-                className={`h-32 w-auto transition-[filter,opacity] duration-300 ${
+                className={`h-32 w-auto transition-[filter,opacity] duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                   onDarkBackground ? 'drop-shadow-200' : ''
                 }`}
                 width={180}
@@ -55,22 +61,30 @@ export function Header() {
                   onClick={() => setResourcesOpen((open) => !open)}
                 >
                   Resources
-                  <CaretDownIcon aria-hidden="true" className="size-12 opacity-70" />
+                  <CaretDownIcon
+                    aria-hidden="true"
+                    className={`size-12 opacity-70 transition-transform duration-[220ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      resourcesOpen ? 'rotate-180' : ''
+                    }`}
+                  />
                 </button>
 
-                {resourcesOpen ? (
-                  <div className="absolute top-full left-0 w-56 rounded-lg-6 border border-border-alt/20 bg-accent-alt p-8 shadow-400">
-                    {header.resources.map((item) => (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="block rounded-md px-12 py-8 text-body-sm font-medium text-text-primary transition-colors duration-150 hover:bg-surface-alt"
-                      >
-                        {item.label}
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
+                <div
+                  className={`header-nav-dropdown absolute top-full left-0 w-56 rounded-lg-6 border border-border-alt/20 bg-accent-alt/95 p-8 shadow-400 backdrop-blur-md ${
+                    resourcesOpen ? 'is-open' : ''
+                  }`}
+                  inert={resourcesOpen ? undefined : true}
+                >
+                  {header.resources.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="header-nav-link block rounded-md px-12 py-8 text-body-sm font-medium text-text-primary hover:bg-surface-alt"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
               </div>
 
               {header.links.map((link) => (

@@ -397,6 +397,83 @@
     }
   }
 
+  .header-nav {
+    isolation: isolate;
+  }
+
+  .header-nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 60%, transparent 100%);
+
+    transition:
+      background var(--motion-duration-nav) var(--motion-ease-nav),
+      backdrop-filter var(--motion-duration-nav) var(--motion-ease-nav),
+      -webkit-backdrop-filter var(--motion-duration-nav) var(--motion-ease-nav),
+      border-color var(--motion-duration-nav) var(--motion-ease-nav),
+      box-shadow var(--motion-duration-nav) var(--motion-ease-nav);
+  }
+
+  .header-nav[data-theme='dark']::before {
+    background: rgba(12, 12, 18, 0.22);
+  }
+
+  .header-nav[data-scrolled='true']::before {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .header-nav[data-scrolled='true'][data-theme='dark']::before {
+    background: rgba(12, 12, 18, 0.52);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .header-nav-link {
+    transition:
+      color var(--motion-duration-nav) var(--motion-ease-nav),
+      opacity var(--motion-duration-nav) var(--motion-ease-nav);
+  }
+
+  .header-nav-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition:
+      opacity var(--motion-duration-nav) var(--motion-ease-nav),
+      visibility var(--motion-duration-nav) var(--motion-ease-nav),
+      transform var(--motion-duration-nav) var(--motion-ease-nav);
+  }
+
+  .header-nav-dropdown.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header-nav::before,
+    .header-nav-link,
+    .header-nav-dropdown {
+      transition: none;
+    }
+  }
+
   .visual-checkerboard {
     background-color: var(--color-surface-alt);
     background-image:
