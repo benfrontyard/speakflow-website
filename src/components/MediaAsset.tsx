@@ -4,9 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Shimmer } from './Shimmer'
 
 export type MediaAssetSource =
-  | { type: 'lottie'; src: string }
+  | { type: 'lottie'; src: string; inset?: string }
   | { type: 'video'; src: string; poster?: string }
   | { type: 'image'; src: string; alt?: string }
+
+const defaultLottieInset = '-inset-x-[10%] -inset-y-[11%]'
 
 type MediaAssetProps = {
   source: MediaAssetSource
@@ -22,11 +24,13 @@ function LottiePlayer({
   autoplay,
   loop,
   objectFit,
+  inset = defaultLottieInset,
 }: {
   animationData: object
   autoplay: boolean
   loop: boolean
   objectFit: 'cover' | 'contain'
+  inset?: string
 }) {
   const { View } = useLottie({
     animationData,
@@ -39,7 +43,9 @@ function LottiePlayer({
   })
 
   return (
-    <div className="absolute -inset-x-[10%] -inset-y-[11%] overflow-hidden [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-hidden">
+    <div
+      className={`absolute overflow-hidden [&_svg]:block [&_svg]:h-full [&_svg]:w-full [&_svg]:overflow-hidden ${inset}`}
+    >
       {View}
     </div>
   )
@@ -153,6 +159,7 @@ export function MediaAsset({
             loop={!prefersReducedMotion}
             autoplay={!prefersReducedMotion}
             objectFit={objectFit}
+            inset={source.type === 'lottie' ? source.inset : undefined}
           />
         ) : null}
       </div>

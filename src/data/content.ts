@@ -10,6 +10,15 @@ export const media = {
     type: 'lottie',
     src: assetUrl('/media/Manage-your-workflow.json'),
   },
+  worksWhereYouDo: {
+    type: 'lottie',
+    src: assetUrl('/media/Works-where-you-do.json'),
+    inset: '-left-[12%] -right-[12%] -top-[40%] -bottom-[8%]',
+  },
+  bringYourCrew: {
+    type: 'lottie',
+    src: assetUrl('/media/Bring-your-crew-Elegant.json'),
+  },
   createVideo: {
     type: 'video',
     src: assetUrl('/media/purchaser_16x9.mp4'),
@@ -165,7 +174,7 @@ export const content = {
         title: 'Works where you do',
         description:
           'Run Speakflow on laptop, tablet, or phone anywhere you need to record.',
-        media: media.runOnOneScreen,
+        media: media.worksWhereYouDo,
       },
       {
         label: 'Dashboard',
@@ -179,7 +188,7 @@ export const content = {
         title: 'Bring your crew',
         description:
           'Share scripts with teammates so everyone records from the same version.',
-        media: media.manageWorkflow,
+        media: media.bringYourCrew,
       },
     ],
   },
